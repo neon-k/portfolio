@@ -26,10 +26,14 @@
 
 <script>
 import Logo from '~/components/Logo.vue'
+import { createClient } from 'contentful'
 
 export default {
   components: {
     Logo
+  },
+  mounted() {
+    console.log(createClient);
   }
 }
 </script>
