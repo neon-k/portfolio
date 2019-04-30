@@ -2,7 +2,7 @@ import pkg from './package';
 import StylelintPlugin from 'stylelint-webpack-plugin';
 import { createClient } from 'contentful';
 
-require('dotenv').config()
+require('dotenv').config();
 
 // .envから環境変数を受け取る
 const { SPACE_ID, ACCESS_TOKEN } = process.env;
@@ -14,7 +14,7 @@ const client = createClient({
 
 // デフォルトのtypeをセット
 const type = {
-  content_type: 'posts', // 投稿のtype
+  content_type: 'posts' // 投稿のtype
 };
 
 const getPosts = client.getEntries(type);
@@ -53,10 +53,7 @@ export default {
   /*
    ** Nuxt.js modules
    */
-  modules: [
-    '@nuxtjs/style-resources',
-    ['nuxt-webfontloader']
-  ],
+  modules: ['@nuxtjs/style-resources', ['nuxt-webfontloader']],
 
   // webfontを読み込む
   webfontloader: {
@@ -67,10 +64,7 @@ export default {
 
   // 全体で使うcssの変数
   styleResources: {
-    scss: [
-      '~/assets/styles/modules/variable.scss',
-      '~/assets/styles/modules/mixin.scss'
-    ]
+    scss: ['~/assets/styles/modules/variable.scss', '~/assets/styles/modules/mixin.scss']
   },
 
   // ビルド時に走らせる処理
@@ -103,13 +97,12 @@ export default {
     }
   },
   generate: {
-    routes () {
-      return getPosts
-        .then(entries => {
-          return [
-            ...entries.items.map(entry => `/post/${entry.fields.slug}`) // 個別ページを吐き出す
-          ]
-        })
+    routes() {
+      return getPosts.then(entries => {
+        return [
+          ...entries.items.map(entry => `/post/${entry.fields.slug}`) // 個別ページを吐き出す
+        ];
+      });
     }
   },
   // 環境変数
