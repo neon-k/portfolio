@@ -5,9 +5,22 @@
     img.slug_image(:src="post.fields.postImage.fields.file.url")
     .slug_body(v-for="(postContent, index) in post.fields.body.content" :key="index")
 
-      //- 通常のテクストの場合
+      //- デバック用
+      //- p {{postContent}}
+
+      //- テクストの場合
       .slug_body-section(v-if="postContent.nodeType === 'paragraph'")
-        p {{ postContent.content[0].value }}
+        .slug_body-section-inner(v-for="(postContent, i) in postContent.content" :key="i")
+
+          //- 通常のテクストの場合
+          p.slug_text(v-if="postContent.nodeType === 'text' && postContent.value !== ''") {{ postContent.value }}
+
+          //- リンクテクストの場合
+          a.slug_link(
+            v-else-if="postContent.nodeType === 'hyperlink'"
+            :href="postContent.data.uri"
+             target="_blank"
+          ) {{ postContent.content[0].value }}
 
       //- リストの場合
       .slug_body-section(v-if="postContent.nodeType === 'unordered-list'")
@@ -16,7 +29,15 @@
             div(v-for="(postListInner, j) in postList.content" :key="j")
               p {{ postListInner.content[0].value }}
 
-      //- 他のリンクの場合
+      //- リストの場合
+      .slug_body-section(v-if="postContent.nodeType === 'hyperlink'")
+        a.slug-link(:src="postContent.content[1].data.uri") {{postContent.content[1].content.value}}
+
+      //- 画像の場合
+      .slug_body-section(v-if="postContent.nodeType === 'embedded-asset-block'")
+        img.slug-img(:src="postContent.data.target.fields.file.url")
+
+      //- ページ内リンクの場合
       .slug_body-section(v-if="postContent.nodeType === 'embedded-entry-block'")
         .slug_body-link
           PostLink(:id="postContent.data.target.sys.id")
@@ -57,6 +78,11 @@ export default {
 .slug_title {
   font-size: 2rem;
   font-weight: bolder;
+}
+
+.slug-img {
+  width: 100%;
+  height: auto;
 }
 
 .slug_date {
