@@ -20,8 +20,8 @@ module.exports = {
   rules: {
     'semi': [2, 'always'],
     'no-console': 'off',
-    'quotes': ['error', 'single'],
     'vue/max-attributes-per-line': 'off',
-    'prettier/prettier': 'off'
+    'object-shorthand': ['error', 'always'],
+    'no-var': 'error'
   }
 }

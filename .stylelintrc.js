@@ -8,6 +8,8 @@ module.exports = {
   ],
   rules: {
     'scss/dollar-variable-colon-space-after': 'always',
-    'string-quotes': 'single'
+    'string-quotes': 'single',
+    'declaration-colon-newline-after': null,
+    'value-list-comma-newline-after': null
   }
 }

@@ -25,9 +25,7 @@ export default {
   /*
    ** Global CSS
    */
-  css: [
-    { src: '~/assets/styles/sw.scss', lang: 'scss' },
-  ],
+  css: [{ src: '~/assets/styles/sw.scss', lang: 'scss' }],
 
   /*
    ** Plugins to load before mounting the App
@@ -40,9 +38,7 @@ export default {
   modules: ['@nuxtjs/style-resources'],
 
   styleResources: {
-    scss: [
-      '~/assets/styles/variable.scss',
-      ]
+    scss: ['~/assets/styles/variable.scss']
   },
 
   /*
@@ -67,22 +63,20 @@ export default {
         });
 
         // styleLint
-        config.plugins.push(new StylelintPlugin({
-          files: [
-            '**/*.vue',
-            '**/*.scss',
-          ],
-          options: {
-            fix: true
-          }
-        }));
+        config.plugins.push(
+          new StylelintPlugin({
+            files: ['**/*.vue', '**/*.scss'],
+            options: {
+              fix: true
+            }
+          })
+        );
       }
     }
   },
   // 環境変数
   env: {
     SPACE_ID: '9orv7sxolfmo',
-    ACCESS_TOKEN:
-      '97c4e5a69f88dccf0bb45e2ab1ad148f69ba9057997c0545f731153ee9fd1b2b'
+    ACCESS_TOKEN: '97c4e5a69f88dccf0bb45e2ab1ad148f69ba9057997c0545f731153ee9fd1b2b'
   }
 };

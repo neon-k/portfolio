@@ -32,7 +32,7 @@ export default {
     PostLink
   },
   async asyncData({ params }) {
-    const type = {
+    let type = {
       content_type: 'posts',
       'fields.slug': params.slug
     };
