@@ -1,4 +1,5 @@
-import pkg from "./package"
+import pkg from "./package";
+import StylelintPlugin from 'stylelint-webpack-plugin';
 
 export default {
   mode: "universal",
@@ -53,6 +54,7 @@ export default {
      */
     extend(config, ctx) {
       if (ctx.isDev && ctx.isClient) {
+        // eslint
         config.module.rules.push({
           enforce: "pre",
           test: /\.(js|vue)$/,
@@ -62,7 +64,18 @@ export default {
             fix: true,
             failOnWarning: true
           }
-        })
+        });
+
+        // styleLint
+        config.plugins.push(new StylelintPlugin({
+          files: [
+            '**/*.vue',
+            '**/*.scss',
+          ],
+          options: {
+            fix: true
+          }
+        }));
       }
     }
   },
@@ -72,4 +85,4 @@ export default {
     ACCESS_TOKEN:
       "97c4e5a69f88dccf0bb45e2ab1ad148f69ba9057997c0545f731153ee9fd1b2b"
   }
-}
+};

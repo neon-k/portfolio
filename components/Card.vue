@@ -33,7 +33,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .card {
   width: 300px;
   height: 200px;
@@ -43,17 +43,21 @@ export default {
   margin: 10px 10px;
   text-align: center;
 }
+
 .wrapper {
   text-decoration: none;
 }
+
 .card_title {
   font-size: 1.2rem;
 }
+
 .card_date {
   font-size: 0.7rem;
   color: rgb(57, 72, 85);
   text-align: right;
 }
+
 .card_image {
   max-height: 100px;
 }
