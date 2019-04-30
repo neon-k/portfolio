@@ -1,6 +1,11 @@
 import pkg from './package';
 import StylelintPlugin from 'stylelint-webpack-plugin';
 
+require('dotenv').config()
+
+// .envから環境変数を受け取る
+const { SPACE_ID, ACCESS_TOKEN } = process.env;
+
 export default {
   mode: 'universal',
 
@@ -76,7 +81,7 @@ export default {
   },
   // 環境変数
   env: {
-    SPACE_ID: '9orv7sxolfmo',
-    ACCESS_TOKEN: '97c4e5a69f88dccf0bb45e2ab1ad148f69ba9057997c0545f731153ee9fd1b2b'
+    SPACE_ID,
+    ACCESS_TOKEN
   }
 };
