@@ -11,9 +11,9 @@
 </template>
 
 <script>
-import Card from "~/components/Card.vue";
+import Card from '~/components/Card.vue';
 
-import { getPosts } from "~/plugins/contentful.js";
+import { getPosts } from '~/plugins/contentful.js';
 
 export default {
   components: {

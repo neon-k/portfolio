@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import { getPosts } from "~/plugins/contentful.js";
+import { getPosts } from '~/plugins/contentful.js';
 
 export default {
   props: {
@@ -16,15 +16,15 @@ export default {
   },
   data: () => {
     return {
-      post: ""
+      post: ''
     };
   },
   mounted() {
     console.log(this.id);
 
     const type = {
-      content_type: "posts", // 投稿のtype
-      "sys.id": this.id
+      content_type: 'posts', // 投稿のtype
+      'sys.id': this.id
     };
 
     getPosts(type)

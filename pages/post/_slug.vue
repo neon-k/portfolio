@@ -23,18 +23,18 @@
 </template>
 
 <script>
-import PostLink from "~/components/PostLink.vue";
-import { getPosts } from "~/plugins/contentful.js";
+import PostLink from '~/components/PostLink.vue';
+import { getPosts } from '~/plugins/contentful.js';
 
 export default {
-  transition: "slide-left",
+  transition: 'slide-left',
   components: {
     PostLink
   },
   async asyncData({ params }) {
     const type = {
-      content_type: "posts",
-      "fields.slug": params.slug
+      content_type: 'posts',
+      'fields.slug': params.slug
     };
 
     return await getPosts(type)
