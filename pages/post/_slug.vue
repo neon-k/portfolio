@@ -19,7 +19,7 @@
       // 他のリンクの場合
       .slug_body-section(v-if="postContent.nodeType === 'embedded-entry-block'")
         .slug_body-link
-          postlink(:id="postContent.data.target.sys.id")
+          PostLink(:id="postContent.data.target.sys.id")
 </template>
 
 <script>
@@ -48,7 +48,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 .slug {
   max-width: 800px;
   margin: 0 auto;
@@ -59,7 +59,7 @@ export default {
 }
 .slug_date {
   font-size: 1rem;
-  color: rgb(57, 72, 85);
+  color: $purple;
   text-align: right;
 }
 
