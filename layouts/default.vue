@@ -3,7 +3,3 @@
     <nuxt />
   </div>
 </template>
-
-<style lang="scss">
-@import '~/assets/styles/sw.scss';
-</style>
