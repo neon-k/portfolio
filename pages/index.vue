@@ -1,40 +1,41 @@
-<template>
-  <section class="container">
-    <div>
-      <logo />
-      <h1 class="title">
-        portfolio
-      </h1>
-      <h2 class="subtitle">
-        My scrumtrulescent Nuxt.js project
-      </h2>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          class="button--green"
-        >Documentation</a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          class="button--grey"
-        >GitHub</a>
-      </div>
-    </div>
-  </section>
+<template lang="pug">
+  section.container
+    Card(
+      v-for="post in posts"
+      :key="post.fields.slug"
+      :title="post.fields.title"
+      :slug="post.fields.slug"
+      :header-url="post.fields.postImage"
+      :published-at="post.fields.postDate"
+    )
 </template>
 
 <script>
-import Logo from '~/components/Logo.vue'
+import Card from '~/components/Card.vue';
+import { getPosts } from '~/plugins/contentful.js';
 
 export default {
   components: {
-    Logo
+    Card
+  },
+  async asyncData() {
+    return await getPosts()
+      .then(res => {
+        return {
+          posts: res.items
+        };
+      })
+      .catch(console.error);
+  },
+  mounted() {
+    getPosts().then(res => {
+      console.log(res);
+    });
   }
-}
+};
 </script>
 
-<style>
+<style lang="scss" scoped>
 .container {
   margin: 0 auto;
   min-height: 100vh;
@@ -45,8 +46,7 @@ export default {
 }
 
 .title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   display: block;
   font-weight: 300;
   font-size: 100px;
