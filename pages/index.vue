@@ -5,37 +5,36 @@
       :key="post.fields.slug"
       :title="post.fields.title"
       :slug="post.fields.slug"
-      :headerUrl="post.fields.postImage"
-      :publishedAt="post.fields.postDate"
+      :header-url="post.fields.postImage"
+      :published-at="post.fields.postDate"
     />
   </section>
 </template>
 
 <script>
-import Card from '~/components/Card.vue'
+import Card from "~/components/Card.vue";
 
-import { getPosts } from '~/plugins/contentful.js'
+import { getPosts } from "~/plugins/contentful.js";
 
 export default {
   components: {
     Card
-  },
-  mounted () {
-    getPosts()
-      .then(res => {
-        console.log(res);
-      })
   },
   async asyncData() {
     return await getPosts()
       .then(res => {
         return {
           posts: res.items
-        }
+        };
       })
-      .catch(console.error)
+      .catch(console.error);
+  },
+  mounted() {
+    getPosts().then(res => {
+      console.log(res);
+    });
   }
-}
+};
 </script>
 
 <style>
@@ -49,8 +48,8 @@ export default {
 }
 
 .title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-family: "Quicksand", "Source Sans Pro", -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   display: block;
   font-weight: 300;
   font-size: 100px;

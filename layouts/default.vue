@@ -6,8 +6,8 @@
 
 <style>
 html {
-  font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
-    Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif;
   font-size: 16px;
   word-spacing: 1px;
   -ms-text-size-adjust: 100%;
@@ -58,13 +58,13 @@ html {
   opacity: 0;
 }
 .slide-left-enter-active {
-  transition: all .3s linear;
+  transition: all 0.3s linear;
 }
 .slide-left-leave-to {
   transform: translateX(-2000px);
   opacity: 0;
 }
 .slide-left-leave-active {
-  transition: all .3s linear;
+  transition: all 0.3s linear;
 }
 </style>
