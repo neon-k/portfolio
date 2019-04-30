@@ -1,54 +1,25 @@
-<template>
-  <section class="slug">
-    <h1 class="slug_title">
-      {{ post.fields.title }}
-    </h1>
-    <p class="slug_date">
-      {{ new Date(post.fields.postDate).toLocaleDateString() }}
-    </p>
-    <img class="slug_image" :src="post.fields.postImage.fields.file.url">
-    <div
-      v-for="(postContent, index) in post.fields.body.content"
-      :key="index"
-      class="slug_body"
-    >
-      <!-- {{postContent}} -->
-      <!-- 通常のテクストの場合 -->
-      <div
-        v-if="postContent.nodeType === 'paragraph'"
-        class="slug_body-section"
-      >
-        <p>{{ postContent.content[0].value }}</p>
-      </div>
+<template lang="pug">
+  section.slug
+    h1.slug_title {{ post.fields.title }}
+    p.slug_date {{ new Date(post.fields.postDate).toLocaleDateString() }}
+    img.slug_image(:src="post.fields.postImage.fields.file.url")
+    .slug_body(v-for="(postContent, index) in post.fields.body.content" :key="index")
 
-      <!-- リストの場合 -->
-      <div
-        v-if="postContent.nodeType === 'unordered-list'"
-        class="slug_body-section"
-      >
-        <ul class="slug_body-list-wrap">
-          <li v-for="(postList, i) in postContent.content" :key="i">
-            <div
-              v-for="(postListInner, j) in postList.content"
-              :key="j"
-            >
-              <p>{{ postListInner.content[0].value }}</p>
-            </div>
-          </li>
-        </ul>
-      </div>
+      // 通常のテクストの場合
+      .slug_body-section(v-if="postContent.nodeType === 'paragraph'")
+        p {{ postContent.content[0].value }}
 
-      <!-- 他のリンクの場合 -->
-      <div
-        v-if="postContent.nodeType === 'embedded-entry-block'"
-        class="slug_body-section"
-      >
-        <div class="slug_body-link">
-          <PostLink :id="postContent.data.target.sys.id" />
-        </div>
-      </div>
-    </div>
-  </section>
+      // リストの場合
+      .slug_body-section(v-if="postContent.nodeType === 'unordered-list'")
+        ul.slug_body-list-wrap
+          li(v-for="(postList, i) in postContent.content" :key="i")
+            div(v-for="(postListInner, j) in postList.content" :key="j")
+              p {{ postListInner.content[0].value }}
+
+      // 他のリンクの場合
+      .slug_body-section(v-if="postContent.nodeType === 'embedded-entry-block'")
+        .slug_body-link
+          postlink(:id="postContent.data.target.sys.id")
 </template>
 
 <script>

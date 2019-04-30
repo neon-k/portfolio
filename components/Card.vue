@@ -1,18 +1,11 @@
-<template>
-  <article class="card">
-    <nuxt-link
+<template lang="pug">
+  article.card
+    nuxt-link.wrapper(
       :to="{ name: 'post-slug', params: { slug: slug } }"
-      class="wrapper"
-    >
-      <img class="card_image" :src="headerUrl.fields.file.url">
-      <h1 class="card_title">
-        {{ title }}
-      </h1>
-      <p class="card_date">
-        {{ new Date(publishedAt).toLocaleDateString() }}
-      </p>
-    </nuxt-link>
-  </article>
+    )
+      img.card_image(:src="headerUrl.fields.file.url")
+      h1.card_title {{ title }}
+      p.card_date {{ new Date(publishedAt).toLocaleDateString() }}
 </template>
 
 <script>

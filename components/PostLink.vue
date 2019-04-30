@@ -1,12 +1,7 @@
-<template>
-  <div v-if="post !== ''" class="link-card">
-    <nuxt-link
-      :to="{ name: 'post-slug', params: { slug: post[0].fields.slug } }"
-      class="wrapper"
-    >
-      <img class="link_image" :src="post[0].fields.postImage.fields.file.url">
-    </nuxt-link>
-  </div>
+<template lang="pug">
+  .link-card(v-if="post !== ''")
+    nuxt-link.wrapper(:to="{ name: 'post-slug', params: { slug: post[0].fields.slug } }")
+      img.link_image(:src="post[0].fields.postImage.fields.file.url")
 </template>
 
 <script>

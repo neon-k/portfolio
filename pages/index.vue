@@ -1,14 +1,13 @@
-<template>
-  <section class="container">
-    <Card
+<template lang="pug">
+  section.container
+    Card(
       v-for="post in posts"
       :key="post.fields.slug"
       :title="post.fields.title"
       :slug="post.fields.slug"
       :header-url="post.fields.postImage"
       :published-at="post.fields.postDate"
-    />
-  </section>
+    )
 </template>
 
 <script>
@@ -37,7 +36,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .container {
   margin: 0 auto;
   min-height: 100vh;
