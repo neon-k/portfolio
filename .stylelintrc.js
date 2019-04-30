@@ -7,6 +7,7 @@ module.exports = {
     'stylelint-config-recommended'
   ],
   rules: {
-    'scss/dollar-variable-colon-space-after': 'always'
+    'scss/dollar-variable-colon-space-after': 'always',
+    'string-quotes': 'single'
   }
 }

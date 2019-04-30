@@ -48,13 +48,13 @@ export default {
 
 .title {
   font-family:
-    "Quicksand",
-    "Source Sans Pro",
+    'Quicksand',
+    'Source Sans Pro',
     -apple-system,
     BlinkMacSystemFont,
-    "Segoe UI",
+    'Segoe UI',
     Roboto,
-    "Helvetica Neue",
+    'Helvetica Neue',
     Arial,
     sans-serif;
   display: block;
