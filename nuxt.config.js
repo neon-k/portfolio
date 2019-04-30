@@ -53,20 +53,30 @@ export default {
   /*
    ** Nuxt.js modules
    */
-  modules: ['@nuxtjs/style-resources'],
+  modules: [
+    '@nuxtjs/style-resources',
+    ['nuxt-webfontloader']
+  ],
 
-  styleResources: {
-    scss: ['~/assets/styles/variable.scss']
+  // webfontを読み込む
+  webfontloader: {
+    google: {
+      families: ['Work Sans', 'Noto Sans JP']
+    }
   },
 
-  /*
-   ** Build configuration
-   */
+  // 全体で使うcssの変数
+  styleResources: {
+    scss: [
+      '~/assets/styles/modules/variable.scss',
+      '~/assets/styles/modules/mixin.scss'
+    ]
+  },
+
+  // ビルド時に走らせる処理
   build: {
-    /*
-     ** You can extend webpack config here
-     */
     extend(config, ctx) {
+      // 開発のビルド
       if (ctx.isDev && ctx.isClient) {
         // eslint
         config.module.rules.push({
@@ -97,7 +107,7 @@ export default {
       return getPosts
         .then(entries => {
           return [
-            ...entries.items.map(entry => `/post/${entry.fields.slug}`)
+            ...entries.items.map(entry => `/post/${entry.fields.slug}`) // 個別ページを吐き出す
           ]
         })
     }
