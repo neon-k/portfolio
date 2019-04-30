@@ -10,8 +10,7 @@
     "start": "nuxt start",
     "generate": "nuxt generate",
     "script:lint": "eslint --fix --ext .js,.vue --ignore-path .gitignore .",
-    "style:lint": "stylelint --fix \"**/*.scss\"",
-    "style:lint:vue": "stylelint --fix \"**/*.vue\""
+    "style:lint": "stylelint --fix \"**/*.scss\" && stylelint --fix \"**/*.vue\""
   },
   "dependencies": {
     "contentful": "^7.5.0",
