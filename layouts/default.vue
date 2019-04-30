@@ -3,23 +3,3 @@
     <nuxt />
   </div>
 </template>
-
-<style>
-.slide-left-enter {
-  transform: translateX(2000px);
-  opacity: 0;
-}
-
-.slide-left-enter-active {
-  transition: all 0.3s linear;
-}
-
-.slide-left-leave-to {
-  transform: translateX(-2000px);
-  opacity: 0;
-}
-
-.slide-left-leave-active {
-  transition: all 0.3s linear;
-}
-</style>
