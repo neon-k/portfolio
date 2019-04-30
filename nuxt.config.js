@@ -1,10 +1,23 @@
 import pkg from './package';
 import StylelintPlugin from 'stylelint-webpack-plugin';
+import { createClient } from 'contentful';
 
 require('dotenv').config()
 
 // .envから環境変数を受け取る
 const { SPACE_ID, ACCESS_TOKEN } = process.env;
+
+const client = createClient({
+  space: process.env.SPACE_ID,
+  accessToken: process.env.ACCESS_TOKEN
+});
+
+// デフォルトのtypeをセット
+const type = {
+  content_type: 'posts', // 投稿のtype
+};
+
+const getPosts = client.getEntries(type);
 
 export default {
   mode: 'universal',
@@ -77,6 +90,16 @@ export default {
           })
         );
       }
+    }
+  },
+  generate: {
+    routes () {
+      return getPosts
+        .then(entries => {
+          return [
+            ...entries.items.map(entry => `/post/${entry.fields.slug}`)
+          ]
+        })
     }
   },
   // 環境変数
