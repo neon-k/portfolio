@@ -1,22 +1,30 @@
 <template lang="pug">
-  section.container
-    Card(
-      v-for="post in posts"
-      :key="post.fields.slug"
-      :title="post.fields.title"
-      :slug="post.fields.slug"
-      :header-url="post.fields.postImage"
-      :published-at="post.fields.postDate"
+  .button
+    p {{count}}
+    buttonComponent(
+      :name = "'+'"
+      :clickEvent = "ADD_COUNT"
+    )
+    buttonComponent(
+      :name = "'-'"
+      :clickEvent = "REMOVE_COUNT"
     )
 </template>
 
 <script>
+import buttonComponent from '~/components/Button.vue';
+import { mapActions, mapState } from 'vuex';
+import { ADD_COUNT, REMOVE_COUNT } from '~/store/mutation-types';
 import Card from '~/components/Card.vue';
 import { getPosts } from '~/plugins/contentful.js';
 
 export default {
   components: {
-    Card
+    Card,
+    buttonComponent
+  },
+  computed: {
+    ...mapState(['count'])
   },
   async asyncData() {
     return await getPosts()
@@ -31,6 +39,12 @@ export default {
     getPosts().then(res => {
       console.log(res);
     });
+  },
+  methods: {
+    ...mapActions({
+      ADD_COUNT,
+      REMOVE_COUNT
+    })
   }
 };
 </script>
@@ -43,15 +57,6 @@ export default {
   justify-content: center;
   align-items: center;
   text-align: center;
-}
-
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
 }
 
 .subtitle {
