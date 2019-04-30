@@ -49,7 +49,7 @@ export default {
 }
 
 .card_title {
-  font-size: 1.2rem;
+  @include font-size(12);
 }
 
 .card_date {
