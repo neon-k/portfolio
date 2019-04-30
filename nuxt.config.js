@@ -43,7 +43,7 @@ export default {
   /*
    ** Global CSS
    */
-  css: [{ src: '~/assets/styles/sw.scss', lang: 'scss' }],
+  css: [],
 
   /*
    ** Plugins to load before mounting the App
