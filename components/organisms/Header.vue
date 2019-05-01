@@ -1,20 +1,52 @@
 <template lang="pug">
   header.header
-    p header
+    .header-inner
+      h1.header-title
+        nuxt-link.header-link(to="/")
+          Logo(:color="color")
+      .menu-wrap
+        ToggleButton
 </template>
 <script>
+import Color from '~/constants/styles/color.js';
+
+import Logo from '~/components/atoms/Logo.vue';
+import ToggleButton from '~/components/molecules/Toggle-button.vue';
+
 export default {
-  name: 'AppHeader'
+  name: 'Header',
+  components: {
+    Logo,
+    ToggleButton
+  },
+  data: () => {
+    return {
+      color: Color.TERTIARY
+    };
+  }
 };
 </script>
 
 <style lang="scss" scoped>
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
+.header-inner {
+  width: 100%;
+  padding: 0 20px;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  text-align: center;
+}
+
+.header-title {
+  width: 140px;
+}
+
+.header-link {
+  width: 100%;
+  display: block;
+}
+
+.menu-wrap {
+  width: 30px;
+  height: 23px;
 }
 </style>

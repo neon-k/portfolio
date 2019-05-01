@@ -64,7 +64,11 @@ export default {
 
   // 全体で使うcssの変数
   styleResources: {
-    scss: ['~/assets/styles/modules/variable.scss', '~/assets/styles/modules/mixin.scss']
+    scss: [
+      '~/assets/styles/modules/variable.scss',
+      '~/assets/styles/modules/mixin.scss',
+      '~/node_modules/awesome-sass-easing/_sass-easing.scss'
+    ]
   },
 
   // ビルド時に走らせる処理
