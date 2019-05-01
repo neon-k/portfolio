@@ -5,7 +5,7 @@
   font-size: $rem-size + rem;
 }
 
-@mixin media-screen($brackPoints: $brackPoint) {
+@mixin media-screen($brackPoints: $brackPoinMB) {
   @media (max-width: ($brackPoints)) {
     @content;
   }

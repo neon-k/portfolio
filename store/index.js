@@ -39,11 +39,23 @@ const mutations = {
   }
 };
 
+const getters = {
+  postFilter: state => {
+    // トップの6件のみ表示
+    if (state.posts.items.length > 6) {
+      return state.posts.items.slice(0, 6);
+    } else {
+      return state.posts.items; // 6件より少ない場合はそのまま返す
+    }
+  }
+};
+
 const createStore = () =>
   new Vuex.Store({
     state,
     actions,
-    mutations
+    mutations,
+    getters
   });
 
 export default createStore;
