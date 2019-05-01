@@ -3,7 +3,7 @@ import { ADD_COUNT, REMOVE_COUNT, ACTIVE_MENU } from './mutation-types';
 
 const state = {
   count: 0,
-  isMenuActive: false
+  isMenuActive: false // メニューボタンの開閉の真偽
 };
 
 const actions = {
