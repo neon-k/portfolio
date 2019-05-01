@@ -4,3 +4,28 @@
   font-size: $font-size + px;
   font-size: $rem-size + rem;
 }
+
+@mixin media-screen($brackPoints: $brackPoint) {
+  @media (max-width: ($brackPoints)) {
+    @content;
+  }
+}
+
+@mixin hover () {
+  transition: opacity 0.3s;
+  opacity: 1;
+
+  &:hover {
+    opacity: 0.4;
+  }
+
+  @include media-screen() {
+    &:hover {
+      opacity: 1;
+    }
+
+    &:active {
+      opacity: 0.4;
+    }
+  }
+}
