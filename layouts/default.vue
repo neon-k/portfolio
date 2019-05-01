@@ -3,15 +3,18 @@
     Header
     .containar
       nuxt
+    Footer
 </template>
 
 <script>
 import Header from '~/components/organisms/Header';
+import Footer from '~/components/organisms/Footer';
 
 export default {
   name: 'Layout',
   components: {
-    Header
+    Header,
+    Footer
   }
 };
 </script>

@@ -1,8 +1,9 @@
 <template lang="pug">
   .sns
     ul.sns-list
-      li.sns-list
-        Mail
+      li.sns-lists
+        a.sns-link(href="mailto:daiya50.ezweb.ne.jp@gmail.com")
+          Mail(:color="color")
 </template>
 
 <script>
@@ -13,35 +14,39 @@ export default {
   components: {
     Mail
   },
+  props: {
+    // svgのカラーを受け取る
+    color: {
+      type: String,
+      default: '#000'
+    }
+  }
 };
 </script>
 
 <style lang="scss" scoped>
-.card {
-  width: 300px;
-  height: 200px;
-  box-shadow: 1px 2px 3px 1px rgba(0, 0, 0, 0.2);
-  border: 0.5px solid rgb(57, 72, 85);
-  padding: 10px 20px;
-  margin: 10px 10px;
-  text-align: center;
+.sns {
+  width: 100%;
 }
 
-.wrapper {
-  text-decoration: none;
+.sns-list {
+  width: 100%;
+  display: flex;
+  align-items: center;
 }
 
-.card_title {
-  @include font-size(12);
+.sns-link {
+  @include hover();
+
+  width: 30px;
+  height: 30px;
+  display: block;
+  padding: 5px;
+  border-radius: 50%;
+  background-color: #fff;
 }
 
-.card_date {
-  font-size: 0.7rem;
-  color: rgb(57, 72, 85);
-  text-align: right;
-}
-
-.card_image {
-  max-height: 100px;
+.sns-lists {
+  width: 100%;
 }
 </style>

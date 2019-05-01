@@ -46,11 +46,11 @@ export default {
 <style lang="scss" scoped>
 .header-inner {
   @include media-screen() {
-    padding: 0 20px;
+    padding: 20px 10px;
   }
 
   width: 100%;
-  padding: 0 40px 0 20px;
+  padding: 20px 40px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -75,8 +75,13 @@ export default {
 }
 
 .list-inner {
+  @include media-screen() {
+    left: -15px;
+  }
+
   position: absolute;
   top: 15px;
   left: 0;
+  z-index: 1;
 }
 </style>
