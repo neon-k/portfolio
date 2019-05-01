@@ -1,20 +1,13 @@
 import Vuex from 'vuex';
 import { getPosts } from '~/plugins/contentful.js';
-import { ADD_COUNT, REMOVE_COUNT, ACTIVE_MENU, GET_POST, SUCCESS_POST, ERROR_POST } from './mutation-types';
+import { ACTIVE_MENU, GET_POST, SUCCESS_POST, ERROR_POST } from './mutation-types';
 
 const state = {
-  count: 0,
   isMenuActive: false, // メニューボタンの開閉の真偽
   posts: null // 記事データを格納
 };
 
 const actions = {
-  [ADD_COUNT]({ commit }) {
-    commit(ADD_COUNT);
-  },
-  [REMOVE_COUNT]({ commit }) {
-    commit(REMOVE_COUNT);
-  },
   [ACTIVE_MENU]({ commit }) {
     commit(ACTIVE_MENU); // メニューボタンの真偽を反転
   },
@@ -31,16 +24,6 @@ const actions = {
 };
 
 const mutations = {
-  [ADD_COUNT](state) {
-    state.count++;
-  },
-  [REMOVE_COUNT](state) {
-    if (state.count <= 0) {
-      return;
-    } else {
-      state.count--;
-    }
-  },
   [ACTIVE_MENU](state) {
     state.isMenuActive = !state.isMenuActive; // メニューボタンの真偽を反転
   },
