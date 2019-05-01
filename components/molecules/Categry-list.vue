@@ -30,6 +30,5 @@ export default {
 
   color: $tertiary;
   padding: 10px 0;
-  background-color: $primary;
 }
 </style>

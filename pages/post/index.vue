@@ -1,70 +1,48 @@
 <template lang="pug">
-  section.container
-    Card(
-      v-for="post in posts"
-      :key="post.fields.slug"
-      :title="post.fields.title"
-      :slug="post.fields.slug"
-      :header-url="post.fields.postImage"
-      :published-at="post.fields.postDate"
+  .post-wrap
+    .post-inner(
+      v-for="(post, i) in posts.items"
+      :key="i"
     )
+      CardList(
+        :title="post.fields.title"
+        :slug="post.fields.slug"
+        :header-url="post.fields.postImage"
+        :published-at="post.fields.postDate"
+      )
 </template>
 
 <script>
-import { getPosts } from '~/plugins/contentful.js';
+import { mapState } from 'vuex';
 
-import Card from '~/components/molecules/Card.vue';
+import CardList from '~/components/molecules/Card-list.vue';
 
 export default {
-  name: 'Post',
   components: {
-    Card
+    CardList
   },
-  async asyncData() {
-    return await getPosts()
-      .then(res => {
-        return {
-          posts: res.items
-        };
-      })
-      .catch(console.error);
-  },
-  mounted() {
-    getPosts().then(res => {
-      console.log(res);
-    });
+  computed: {
+    ...mapState(['posts'])
   }
 };
 </script>
 
 <style lang="scss" scoped>
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+.post-wrap {
+  padding: 40px 100px;
+
+  @include media-screen($brackPoinSP) {
+    padding: 40px 10px;
+  }
 }
 
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
+.post-inner {
+  max-width: 900px;
+  width: 100%;
+  margin: 0 auto 100px;
 
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
+  @include media-screen($brackPoinSP) {
+    margin-bottom: 0 auto 40px;
+  }
 }
 </style>
