@@ -1,13 +1,15 @@
 <template lang="pug">
-  .wrap
+  .wrap(v-if="posts !== null")
     Header
     .containar
       nuxt
     Footer
+  .wrap(v-else)
+    p まだデータがありません。
 </template>
 
 <script>
-import { mapActions } from 'vuex';
+import { mapActions, mapState } from 'vuex';
 import { GET_POST } from '~/store/mutation-types';
 
 import Header from '~/components/organisms/Header';
@@ -18,6 +20,9 @@ export default {
   components: {
     Header,
     Footer
+  },
+  computed: {
+    ...mapState(['posts'])
   },
   mounted() {
     this.GET_POST(); // 記事データを取得

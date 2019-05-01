@@ -24,7 +24,9 @@ const actions = {
       .then(res => {
         commit(SUCCESS_POST, { res }); // メニューボタンの真偽を反転
       })
-      .cache(ERROR_POST); // 記事の取得に失敗した場合
+      .catch(() => {
+        commit(ERROR_POST); // 記事の取得に失敗した場合
+      });
   }
 };
 
@@ -48,7 +50,8 @@ const mutations = {
     console.log(payload.res); // デバッグ用
   },
   // 記事の取得に失敗した場合
-  [ERROR_POST]() {
+  [ERROR_POST](state) {
+    console.log(state);
     console.error('失敗');
   }
 };
