@@ -12,13 +12,15 @@
 </template>
 
 <script>
-import buttonComponent from '~/components/Button.vue';
 import { mapActions, mapState } from 'vuex';
 import { ADD_COUNT, REMOVE_COUNT } from '~/store/mutation-types';
-import Card from '~/components/Card.vue';
 import { getPosts } from '~/plugins/contentful.js';
 
+import buttonComponent from '~/components/atoms/Button.vue';
+import Card from '~/components/molecules/Card.vue';
+
 export default {
+  name: 'Top',
   components: {
     Card,
     buttonComponent

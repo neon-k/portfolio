@@ -11,10 +11,12 @@
 </template>
 
 <script>
-import Card from '~/components/Card.vue';
 import { getPosts } from '~/plugins/contentful.js';
 
+import Card from '~/components/molecules/Card.vue';
+
 export default {
+  name: 'Post',
   components: {
     Card
   },

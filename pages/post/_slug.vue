@@ -44,10 +44,12 @@
 </template>
 
 <script>
-import PostLink from '~/components/PostLink.vue';
 import { getPosts } from '~/plugins/contentful.js';
 
+import PostLink from '~/components/molecules/PostLink.vue';
+
 export default {
+  name: 'Slug',
   transition: 'slide-left',
   components: {
     PostLink
