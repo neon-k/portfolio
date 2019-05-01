@@ -8,6 +8,7 @@
 export default {
   name: 'Logo',
   props: {
+    // svgのカラーを受け取る
     color: {
       type: String,
       default: '#000'

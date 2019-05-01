@@ -7,6 +7,7 @@
 export default {
   name: 'ToggleButton',
   props: {
+    // ハンバーガーメニューを開閉の真偽
     isActive: {
       type: Boolean,
       default: false

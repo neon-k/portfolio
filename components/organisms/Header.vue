@@ -4,11 +4,14 @@
       h1.header-title
         nuxt-link.header-link(to="/")
           Logo(:color="color")
-      .menu-wrap
-        ToggleButton
+      .menu-wrap(@click="ACTIVE_MENU")
+        ToggleButton(:isActive="isMenuActive")
 </template>
 <script>
 import Color from '~/constants/styles/color.js';
+
+import { mapActions, mapState } from 'vuex';
+import { ACTIVE_MENU } from '~/store/mutation-types';
 
 import Logo from '~/components/atoms/Logo.vue';
 import ToggleButton from '~/components/molecules/Toggle-button.vue';
@@ -23,6 +26,14 @@ export default {
     return {
       color: Color.TERTIARY
     };
+  },
+  computed: {
+    ...mapState(['isMenuActive'])
+  },
+  methods: {
+    ...mapActions({
+      ACTIVE_MENU
+    })
   }
 };
 </script>
