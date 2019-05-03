@@ -22,6 +22,7 @@ export default {
 <style lang="scss" scoped>
 .list {
   padding: 0;
+  background-color: $primary;
 }
 
 .lists-link {

@@ -1,7 +1,7 @@
 <template lang="pug">
   .card(v-lazy:background-image="headerUrl.fields.file.url")
     nuxt-link.card-link(
-      :to="{ name: 'post-slug', params: { slug: slug } }"
+      :to="{ name: 'post-slug', params: { slug } }"
     )
       .card-inner
         .card-details

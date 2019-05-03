@@ -4,7 +4,7 @@
       nuxt-link.card-link(
         :to="{ name: 'post-slug', params: { slug: slug } }"
       )
-      img.card-image(:src="headerUrl.fields.file.url")
+      img.card-image(v-lazy="headerUrl.fields.file.url")
       .card-details
         h2.card-title {{ title }}
         p.card-date {{ new Date(publishedAt).toLocaleDateString() }}
@@ -95,6 +95,7 @@ export default {
 .card-image {
   width: 100%;
   display: block;
+  transition: opacity 0.4s $easeOutSine;
 }
 
 .card-title {
