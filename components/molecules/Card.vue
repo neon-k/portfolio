@@ -1,5 +1,5 @@
 <template lang="pug">
-  .card(:style="{ backgroundImage: 'url(' + headerUrl.fields.file.url + ')' }")
+  .card(v-lazy:background-image="headerUrl.fields.file.url")
     nuxt-link.card-link(
       :to="{ name: 'post-slug', params: { slug: slug } }"
     )
@@ -42,6 +42,15 @@ export default {
   background-origin: center center;
   background-size: cover;
   display: block;
+  transition: opacity 0.4s $easeOutSine;
+
+  &[lazy='loading'] {
+    opacity: 0;
+  }
+
+  &[lazy='loaded'] {
+    opacity: 1;
+  }
 }
 
 .card-link {
