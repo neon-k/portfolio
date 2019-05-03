@@ -2,7 +2,7 @@ import pkg from './package';
 import StylelintPlugin from 'stylelint-webpack-plugin';
 import { createClient } from 'contentful';
 
-require('dotenv').config()
+require('dotenv').config();
 
 // .envから環境変数を受け取る
 const { SPACE_ID, ACCESS_TOKEN } = process.env;
@@ -14,7 +14,7 @@ const client = createClient({
 
 // デフォルトのtypeをセット
 const type = {
-  content_type: 'posts', // 投稿のtype
+  content_type: 'posts' // 投稿のtype
 };
 
 const getPosts = client.getEntries(type);
@@ -48,25 +48,33 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [],
+  plugins: ['~/plugins/lazy-load'],
 
   /*
    ** Nuxt.js modules
    */
-  modules: ['@nuxtjs/style-resources'],
+  modules: ['@nuxtjs/style-resources', ['nuxt-webfontloader']],
 
-  styleResources: {
-    scss: ['~/assets/styles/variable.scss']
+  // webfontを読み込む
+  webfontloader: {
+    google: {
+      families: ['Work Sans', 'Noto Sans JP']
+    }
   },
 
-  /*
-   ** Build configuration
-   */
+  // 全体で使うcssの変数
+  styleResources: {
+    scss: [
+      '~/assets/styles/modules/variable.scss',
+      '~/assets/styles/modules/mixin.scss',
+      '~/node_modules/awesome-sass-easing/_sass-easing.scss'
+    ]
+  },
+
+  // ビルド時に走らせる処理
   build: {
-    /*
-     ** You can extend webpack config here
-     */
     extend(config, ctx) {
+      // 開発のビルド
       if (ctx.isDev && ctx.isClient) {
         // eslint
         config.module.rules.push({
@@ -93,13 +101,12 @@ export default {
     }
   },
   generate: {
-    routes () {
-      return getPosts
-        .then(entries => {
-          return [
-            ...entries.items.map(entry => `/post/${entry.fields.slug}`)
-          ]
-        })
+    routes() {
+      return getPosts.then(entries => {
+        return [
+          ...entries.items.map(entry => `/post/${entry.fields.slug}`) // 個別ページを吐き出す
+        ];
+      });
     }
   },
   // 環境変数

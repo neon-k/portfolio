@@ -8,7 +8,6 @@ const client = createClient({
 // デフォルトのtypeをセット
 const defaultType = {
   content_type: 'posts', // 投稿のtype
-  // 'sys.id': '4ZA8ZFq765WUSNAxzL9T3S',
   order: '-fields.postDate' // 投稿が新しい順にソート
 };
 
