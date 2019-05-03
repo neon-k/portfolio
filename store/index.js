@@ -1,10 +1,11 @@
 import Vuex from 'vuex';
 import { getPosts } from '~/plugins/contentful.js';
-import { ACTIVE_MENU, GET_POST, SUCCESS_POST, ERROR_POST } from './mutation-types';
+import { ACTIVE_MENU, GET_POST, SUCCESS_POST, ERROR_POST, COMPLETE_POST } from './mutation-types';
 
 const state = {
   isMenuActive: false, // メニューボタンの開閉の真偽
-  posts: null // 記事データを格納
+  posts: null, // 記事データを格納
+  isCompletePost: false
 };
 
 const actions = {
@@ -16,9 +17,11 @@ const actions = {
     await getPosts()
       .then(res => {
         commit(SUCCESS_POST, { res }); // メニューボタンの真偽を反転
+        commit(COMPLETE_POST); // 記事データを取得
       })
       .catch(() => {
         commit(ERROR_POST); // 記事の取得に失敗した場合
+        commit(COMPLETE_POST); // 記事データを取得
       });
   }
 };
@@ -36,6 +39,9 @@ const mutations = {
   [ERROR_POST](state) {
     console.log(state);
     console.error('失敗');
+  },
+  [COMPLETE_POST](state) {
+    state.isCompletePost = true;
   }
 };
 

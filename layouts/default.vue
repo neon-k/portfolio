@@ -1,20 +1,23 @@
 <template lang="pug">
-  transition(
-    v-if="posts === null"
-    name="fade"
-  )
-    .loading-wrap
-      Loading
-  .wrap(v-else)
-    Header
-    .containar
-      nuxt
-    Footer
+  .wrap
+    transition(
+      @leave="leave"
+      :css="false"
+      v-if="!isCompletePost"
+    )
+      .loading-wrap
+        Loading
+    .inner(v-else)
+      Header
+      .containar
+        nuxt
+      Footer
 </template>
 
 <script>
 import { mapActions, mapState } from 'vuex';
 import { GET_POST } from '~/store/mutation-types';
+import { loading } from '~/constants/animation';
 
 import Header from '~/components/organisms/Header';
 import Footer from '~/components/organisms/Footer';
@@ -27,8 +30,9 @@ export default {
     Footer,
     Loading
   },
+  transition: 'slide-left',
   computed: {
-    ...mapState(['posts'])
+    ...mapState(['posts', 'isCompletePost'])
   },
   mounted() {
     this.GET_POST(); // 記事データを取得
@@ -36,7 +40,10 @@ export default {
   methods: {
     ...mapActions({
       GET_POST
-    })
+    }),
+    leave(el, done) {
+      loading.leave(el, done);
+    }
   }
 };
 </script>
