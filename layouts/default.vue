@@ -30,7 +30,6 @@ export default {
     Footer,
     Loading
   },
-  transition: 'slide-left',
   computed: {
     ...mapState(['posts', 'isCompletePost'])
   },
