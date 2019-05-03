@@ -8,12 +8,17 @@
           nuxt-link.footer-link(to="/")
             Logo(:color="color")
         p.footer-mail-text daiya50.ezweb.ne.jp@gmail.com
-      .footer-arrow-wrap
-        ArrowTop(:color="color")
+      .footer-arrow-wrap(
+        @click="clickScroll"
+      )
+        ArrowTop(
+          :color="color"
+        )
 </template>
 
 <script>
 import Color from '~/constants/styles/color.js';
+// import { TweenLite } from 'gsap';
 
 import ArrowTop from '~/components/atoms/Arrow-top.vue';
 import Logo from '~/components/atoms/Logo.vue';
@@ -30,6 +35,15 @@ export default {
     color: {
       type: String,
       default: Color.PRIMARY
+    }
+  },
+  methods: {
+    // スムーススクロールのアニメーション
+    clickScroll() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
     }
   }
 };
