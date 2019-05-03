@@ -47,6 +47,16 @@ const getters = {
     } else {
       return state.posts.items; // 6件より少ない場合はそのまま返す
     }
+  },
+  /**
+   * @param {string} slug - 選んだページのslugを受け取る
+   */
+  slugFilter: state => slug => {
+    // slugを使ってページを絞り込み。
+    console.log(slug);
+    return state.posts.items.filter(map => {
+      return map.fields.slug === slug;
+    });
   }
 };
 

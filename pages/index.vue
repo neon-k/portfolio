@@ -27,6 +27,7 @@ import Card from '~/components/molecules/Card.vue';
 
 export default {
   name: 'Top',
+  transition: 'slide-left',
   components: {
     Logo,
     Card

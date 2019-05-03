@@ -1,11 +1,15 @@
 <template lang="pug">
-  .wrap(v-if="posts !== null")
+  transition(
+    v-if="posts === null"
+    name="fade"
+  )
+    .loading-wrap
+      Loading
+  .wrap(v-else)
     Header
     .containar
       nuxt
     Footer
-  .wrap(v-else)
-    p まだデータがありません。
 </template>
 
 <script>
@@ -14,12 +18,14 @@ import { GET_POST } from '~/store/mutation-types';
 
 import Header from '~/components/organisms/Header';
 import Footer from '~/components/organisms/Footer';
+import Loading from '~/components/organisms/Loading';
 
 export default {
   name: 'Layout',
   components: {
     Header,
-    Footer
+    Footer,
+    Loading
   },
   computed: {
     ...mapState(['posts'])
@@ -36,8 +42,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.loading-wrap {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
 .wrap {
   width: 100%;
+  height: 100%;
   display: block;
 }
 

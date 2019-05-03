@@ -21,6 +21,7 @@ export default {
   components: {
     CardList
   },
+  transition: 'slide-left',
   computed: {
     ...mapState(['posts'])
   }
