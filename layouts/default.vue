@@ -18,6 +18,7 @@
 import { mapActions, mapState } from 'vuex';
 import { GET_POST } from '~/store/mutation-types';
 import { loading } from '~/constants/animation';
+import smoothscroll from 'smoothscroll-polyfill';
 
 import Header from '~/components/organisms/Header';
 import Footer from '~/components/organisms/Footer';
@@ -35,6 +36,7 @@ export default {
   },
   mounted() {
     this.GET_POST(); // 記事データを取得
+    smoothscroll.polyfill(); // スムーススクロールのポリフィル。
   },
   methods: {
     ...mapActions({

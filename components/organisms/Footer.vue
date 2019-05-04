@@ -18,7 +18,6 @@
 
 <script>
 import Color from '~/constants/styles/color.js';
-// import { TweenLite } from 'gsap';
 
 import ArrowTop from '~/components/atoms/Arrow-top.vue';
 import Logo from '~/components/atoms/Logo.vue';
