@@ -35,7 +35,7 @@
 
       //- 画像の場合
       .page-body-section(v-if="postContent.nodeType === 'embedded-asset-block'")
-        img.page-img(:src="postContent.data.target.fields.file.url")
+        img.page-img(v-lazy="postContent.data.target.fields.file.url")
 
       //- ページ内リンクの場合
       .page-body-section(v-if="postContent.nodeType === 'embedded-entry-block'")

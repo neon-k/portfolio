@@ -6,9 +6,6 @@
           Logo(:color="color")
       .menu-wrap(@click="ACTIVE_MENU")
         ToggleButton(:isActive="isMenuActive")
-        .list-wrap
-          .list-inner
-            CategryList(:isActive="isMenuActive")
 </template>
 <script>
 import Color from '~/constants/styles/color.js';
@@ -17,15 +14,13 @@ import { mapActions, mapState } from 'vuex';
 import { ACTIVE_MENU } from '~/store/mutation-types';
 
 import Logo from '~/components/atoms/Logo.vue';
-import CategryList from '~/components/molecules/Categry-list.vue';
 import ToggleButton from '~/components/molecules/Toggle-button.vue';
 
 export default {
   name: 'Header',
   components: {
     Logo,
-    ToggleButton,
-    CategryList
+    ToggleButton
   },
   data: () => {
     return {
@@ -44,6 +39,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.header {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 5;
+}
+
 .header-inner {
   @include media-screen() {
     padding: 20px 10px;
@@ -68,20 +71,5 @@ export default {
 .menu-wrap {
   width: 30px;
   height: 23px;
-}
-
-.list-wrap {
-  position: relative;
-}
-
-.list-inner {
-  @include media-screen() {
-    left: -15px;
-  }
-
-  position: absolute;
-  top: 15px;
-  left: 0;
-  z-index: 1;
 }
 </style>

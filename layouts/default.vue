@@ -8,10 +8,15 @@
       .loading-wrap
         Loading
     .inner(v-else)
-      Header
-      .containar
-        nuxt
-      Footer
+      .contents-wrap
+        Header
+        transition(
+          name="menu"
+        )
+          Menu(v-if="isMenuActive")
+        .containar
+          nuxt
+        Footer
 </template>
 
 <script>
@@ -23,16 +28,18 @@ import smoothscroll from 'smoothscroll-polyfill';
 import Header from '~/components/organisms/Header';
 import Footer from '~/components/organisms/Footer';
 import Loading from '~/components/organisms/Loading';
+import Menu from '~/components/organisms/Menu';
 
 export default {
   name: 'Layout',
   components: {
     Header,
     Footer,
-    Loading
+    Loading,
+    Menu
   },
   computed: {
-    ...mapState(['posts', 'isCompletePost'])
+    ...mapState(['posts', 'isCompletePost', 'isMenuActive'])
   },
   mounted() {
     this.GET_POST(); // 記事データを取得
@@ -67,5 +74,6 @@ export default {
 
 .containar {
   width: 100%;
+  padding-top: 80px;
 }
 </style>
