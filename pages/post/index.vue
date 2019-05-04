@@ -4,7 +4,7 @@
       v-for="(post, i) in posts.items"
       :key="i"
     )
-      CardList(
+      Card(
         :title="post.fields.title"
         :slug="post.fields.slug"
         :header-url="post.fields.postImage"
@@ -15,11 +15,11 @@
 <script>
 import { mapState } from 'vuex';
 
-import CardList from '~/components/molecules/Card-list.vue';
+import Card from '~/components/molecules/Card/Card-list';
 
 export default {
   components: {
-    CardList
+    Card
   },
   transition: 'slide-left',
   computed: {

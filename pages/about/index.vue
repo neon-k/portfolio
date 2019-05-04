@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import Logo from '~/components/atoms/Logo.vue';
+import Logo from '~/components/atoms/Logo';
 
 export default {
   name: 'About',

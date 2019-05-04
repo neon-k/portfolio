@@ -8,13 +8,13 @@
         ToggleButton(:isActive="isMenuActive")
 </template>
 <script>
-import Color from '~/constants/styles/color.js';
+import Color from '~/constants/styles/color';
 
 import { mapActions, mapState } from 'vuex';
 import { ACTIVE_MENU } from '~/store/mutation-types';
 
-import Logo from '~/components/atoms/Logo.vue';
-import ToggleButton from '~/components/molecules/Toggle-button.vue';
+import Logo from '~/components/atoms/Logo';
+import ToggleButton from '~/components/molecules/Toggle-button';
 
 export default {
   name: 'Header',

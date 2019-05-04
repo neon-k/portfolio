@@ -49,6 +49,8 @@ export default {
     ...mapActions({
       GET_POST
     }),
+
+    // ローディングのアニメーション
     leave(el, done) {
       loading.leave(el, done);
     }

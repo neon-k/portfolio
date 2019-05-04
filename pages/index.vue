@@ -22,8 +22,8 @@
 <script>
 import { mapState, mapGetters } from 'vuex';
 
-import Logo from '~/components/atoms/Logo.vue';
-import Card from '~/components/molecules/Card.vue';
+import Logo from '~/components/atoms/Logo';
+import Card from '~/components/molecules/Card/Card-top';
 
 export default {
   name: 'Top',
