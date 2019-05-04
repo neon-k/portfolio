@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import Mail from '~/components/atoms/Mail.vue';
+import Mail from '~/components/atoms/Mail';
 
 export default {
   name: 'Sns',

@@ -46,7 +46,7 @@
 <script>
 import { mapGetters } from 'vuex';
 
-import PostLink from '~/components/molecules/PostLink.vue';
+import PostLink from '~/components/molecules/Post-link';
 
 export default {
   name: 'Slug',

@@ -17,11 +17,11 @@
 </template>
 
 <script>
-import Color from '~/constants/styles/color.js';
+import Color from '~/constants/styles/color';
 
-import ArrowTop from '~/components/atoms/Arrow-top.vue';
-import Logo from '~/components/atoms/Logo.vue';
-import Sns from '~/components/molecules/Sns.vue';
+import ArrowTop from '~/components/atoms/Arrow-top';
+import Logo from '~/components/atoms/Logo';
+import Sns from '~/components/molecules/Sns';
 
 export default {
   name: 'Footer',

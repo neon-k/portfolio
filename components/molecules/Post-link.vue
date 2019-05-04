@@ -1,7 +1,7 @@
 <template lang="pug">
   .link-card(v-if="post !== ''")
     nuxt-link.wrapper(:to="{ name: 'post-slug', params: { slug: post[0].fields.slug } }")
-      img.link_image(:src="post[0].fields.postImage.fields.file.url")
+      img.link-image(:src="post[0].fields.postImage.fields.file.url")
 </template>
 
 <script>
@@ -20,17 +20,15 @@ export default {
     };
   },
   mounted() {
-    console.log(this.id);
-
     const type = {
       content_type: 'posts', // 投稿のtype
       'sys.id': this.id
     };
 
+    // idで取得した投稿データを受け取る
     getPosts(type)
       .then(res => {
         this.post = res.items;
-        console.log(this.post[0].fields.slug);
       })
       .catch(console.error);
   }
@@ -43,7 +41,7 @@ export default {
   height: 100%;
 }
 
-.link_image {
+.link-image {
   width: 100%;
   height: 100%;
   display: block;

@@ -11,8 +11,8 @@
 import { mapActions } from 'vuex';
 import { ACTIVE_MENU } from '~/store/mutation-types';
 
-import Sns from '~/components/molecules/Sns.vue';
-import MenuList from '~/components/molecules/Menu-list.vue';
+import Sns from '~/components/molecules/Sns';
+import MenuList from '~/components/molecules/Menu-list';
 
 export default {
   name: 'Menu',
