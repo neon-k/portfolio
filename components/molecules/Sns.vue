@@ -48,5 +48,10 @@ export default {
 
 .sns-lists {
   width: 100%;
+  margin-right: 10px;
+
+  &:last-child {
+    margin-right: 0;
+  }
 }
 </style>
