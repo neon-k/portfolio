@@ -1,7 +1,6 @@
 # Kota Portfolio
 
 私が製作した成果物を記録している、ポートフォリオです。
-下記のツールを使って作成しました。
 
 [https://neon0624.com](https://neon0624.com/)
 
