@@ -13,7 +13,7 @@
         .page-body-section-inner(v-for="(postContent, i) in postContent.content" :key="i")
 
           //- 通常のテクストの場合
-          p.page-text(v-if="postContent.nodeType === 'text' && postContent.value !== ''") {{ postContent.value }}
+          p.page-text(:class="{bold: postContent.marks.length !== 0 && postContent.marks[0].type === 'bold'}" v-if="postContent.nodeType === 'text' && postContent.value !== ''") {{ postContent.value }}
 
           //- リンクテクストの場合
           a.page-text.link(
@@ -118,6 +118,10 @@ export default {
 
     display: inline;
     color: $tertiary;
+  }
+
+  &.bold {
+    font-weight: bold;
   }
 }
 
