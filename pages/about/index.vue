@@ -18,7 +18,7 @@
           li.about-contents-lists Firebase
           li.about-contents-lists AMP
           li.about-contents-lists PWA
-          li.about-contents-lists ContentFull
+          li.about-contents-lists Contentful
           li.about-contents-lists Wordpress
           li.about-contents-lists MySQL
           li.about-contents-lists PHP

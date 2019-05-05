@@ -1,22 +1,38 @@
-# portfolio
+# Kota Portfolio
 
-> My scrumtrulescent Nuxt.js project
+私が製作した成果物を記録している、ポートフォリオです。
+
+[https://neon0624.com](https://neon0624.com/)
+
+
+## Overview
+
+* Framework ([Nuxt.js](https://nuxtjs.org))
+  * 制作の雛型、静的ジェネレートに使っています。
+* CMS ([Contentful](https://www.contentful.com/))
+  * 成果物のページの更新で使っています。
+* HostingServer&Deploy ([Netlify](https://www.netlify.com/))
+  * ホスティングサービスはNetlifyを使っています。mastarにpushしたタイミングでデプロイもする様に設定しています。
+* TemplateEngine([Pug](https://github.com/pugjs/pug))
+* css preprocessor([Sass](https://sass-lang.com/))
+* LintingTool([esLint](https://eslint.org/)&[Prettier](https://github.com/prettier/prettier)&[stylelint](https://stylelint.io/))
+  * javascriptの静的検証ツールはesLint,Prettier、cssはstylelintを使っております。ビルドのタイミングでコードを自動修正しています。
 
 ## Build Setup
 
-``` bash
-# install dependencies
+```bash
+# 依存モジュールをインストール。
 $ yarn install
 
-# serve with hot reload at localhost:3000
-$ yarn run dev
+# 開発開始
+$ yarn dev
 
-# build for production and launch server
-$ yarn run build
-$ yarn start
+# 静的ファイル生成
+$ yarn generate
 
-# generate static project
-$ yarn run generate
+# jsのコードをチェック + 自動修正
+$ yarn script:lint
+
+# cssのコードをチェック + 自動修正
+$ yarn style:lint
 ```
-
-For detailed explanation on how things work, checkout [Nuxt.js docs](https://nuxtjs.org).
