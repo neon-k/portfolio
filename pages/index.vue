@@ -23,7 +23,7 @@
 import { mapState, mapGetters } from 'vuex';
 
 import Logo from '~/components/atoms/Logo';
-import Card from '~/components/molecules/Card/Card-top';
+import Card from '~/components/molecules/Card/Card-list';
 
 export default {
   name: 'Top',
@@ -75,19 +75,12 @@ export default {
   width: 33.333%;
   overflow: hidden;
 
-  &::after {
-    content: '';
-    display: block;
-    padding-top: 80%;
-  }
-
   @include media-screen($brackPoinSP) {
     width: 100%;
+    margin-bottom: 30px;
 
-    &::after {
-      content: '';
-      display: block;
-      padding-top: 60%;
+    &:last-child {
+      margin-bottom: 0;
     }
   }
 }
