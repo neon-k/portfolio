@@ -1,22 +1,13 @@
-# portfolio
+# Kota Portfolio
 
-> My scrumtrulescent Nuxt.js project
+## Overview
 
-## Build Setup
+私が製作した成果物を記録していく、ポートフォリオです。
+下記のツールを使って作成しました。
 
-``` bash
-# install dependencies
-$ yarn install
-
-# serve with hot reload at localhost:3000
-$ yarn run dev
-
-# build for production and launch server
-$ yarn run build
-$ yarn start
-
-# generate static project
-$ yarn run generate
-```
-
-For detailed explanation on how things work, checkout [Nuxt.js docs](https://nuxtjs.org).
+* Framework ([Nuxt.js](https://nuxtjs.org))
+* CMS ([Contentfu](https://www.contentful.com/))
+* HostingServer&Deploy ([Netlify](https://www.netlify.com/)
+* TemplateEngine([Pug](https://github.com/pugjs/pug))
+* css preprocessor([Sass](https://sass-lang.com/))
+* LintingTool([esLint](https://eslint.org/)&[Prettier](https://github.com/prettier/prettier)&[stylelint](https://stylelint.io/))

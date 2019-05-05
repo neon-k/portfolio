@@ -1,8 +1,8 @@
 {
-  "name": "portfolio",
+  "name": "KOTA-ICHIKAWA",
   "version": "1.0.0",
   "description": "My scrumtrulescent Nuxt.js project",
-  "author": "市川功太",
+  "author": "kota",
   "private": true,
   "scripts": {
     "dev": "nuxt",
