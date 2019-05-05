@@ -1,14 +1,17 @@
 # Kota Portfolio
 
-## Overview
-
 私が製作した成果物を記録している、ポートフォリオです。
 下記のツールを使って作成しました。
+
+[https://neon0624.com](https://neon0624.com/)
+
+
+## Overview
 
 * Framework ([Nuxt.js](https://nuxtjs.org))
   * 制作の雛型、静的ジェネレートに使っています。
 * CMS ([Contentful](https://www.contentful.com/))
-  * 成果物のページの更新で使っいます。
+  * 成果物のページの更新で使っています。
 * HostingServer&Deploy ([Netlify](https://www.netlify.com/))
   * ホスティングサービスはNetlifyを使っています。mastarにpushしたタイミングでデプロイもする様に設定しています。
 * TemplateEngine([Pug](https://github.com/pugjs/pug))
