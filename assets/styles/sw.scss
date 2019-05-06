@@ -22,7 +22,7 @@ img[lazy=loading] {
 
 img[lazy=loaded] {
   opacity: 1;
-  transition: opacity 0.8s $easeOutSine;
+  transition: opacity 1.2s $easeOutSine;
 }
 
 h1,

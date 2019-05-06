@@ -35,9 +35,6 @@ export default {
   computed: {
     ...mapState(['posts']),
     ...mapGetters(['postFilter'])
-  },
-  mounted() {
-    console.log(this.posts);
   }
 };
 </script>
