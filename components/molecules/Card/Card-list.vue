@@ -95,7 +95,6 @@ export default {
 .card-image {
   width: 100%;
   display: block;
-  transition: opacity 0.4s $easeOutSine;
 }
 
 .card-title {

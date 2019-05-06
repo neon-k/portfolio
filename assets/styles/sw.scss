@@ -16,12 +16,13 @@ body {
   position: relative;
 }
 
-img[lazy='loading'] {
+img[lazy=loading] {
   opacity: 0;
 }
 
-img[lazy='loaded'] {
+img[lazy=loaded] {
   opacity: 1;
+  transition: opacity 0.8s $easeOutSine;
 }
 
 h1,

@@ -77,11 +77,6 @@ export default {
 
   @include media-screen($brackPoinSP) {
     width: 100%;
-    margin-bottom: 30px;
-
-    &:last-child {
-      margin-bottom: 0;
-    }
   }
 }
 </style>
