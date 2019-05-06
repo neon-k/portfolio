@@ -1,5 +1,6 @@
 <template lang="pug">
   .page
+    img.page-heading-img(v-lazy="postFilter($route.params.slug)[0].fields.postImage.fields.file.url")
     .page-heading
       h2.page-title {{ postFilter($route.params.slug)[0].fields.title }}
       p.page-date {{ new Date(postFilter($route.params.slug)[0].fields.postDate).toLocaleDateString() }}
@@ -89,8 +90,16 @@ export default {
   }
 }
 
+.page-heading-img {
+  width: 100%;
+  max-width: 1000px;
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 30px;
+}
+
 .page-title {
-  @include font-size(20);
+  @include font-size(28);
 
   padding-right: 10px;
 
