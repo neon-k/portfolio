@@ -33,12 +33,10 @@ const mutations = {
   // 記事の取得に成功した場合
   [SUCCESS_POST](state, payload) {
     state.posts = payload.res; // 記事データを格納
-    console.log(payload.res); // デバッグ用
   },
   // 記事の取得に失敗した場合
   [ERROR_POST](state) {
-    console.log(state);
-    console.error('失敗');
+    throw new Error(state);
   },
   [COMPLETE_POST](state) {
     state.isCompletePost = true;
@@ -59,7 +57,6 @@ const getters = {
    */
   slugFilter: state => slug => {
     // slugを使ってページを絞り込み。
-    console.log(slug);
     return state.posts.items.filter(map => {
       return map.fields.slug === slug;
     });
