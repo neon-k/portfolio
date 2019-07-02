@@ -7,7 +7,11 @@
     )
       .loading-wrap
         Loading
-    .inner(v-else)
+    .inner(
+      :class="{ active: isMenuActive }"
+      :style="{ top: `-${scroll}px` }"
+      v-else
+    )
       .contents-wrap
         Header
         transition(
@@ -39,7 +43,7 @@ export default {
     Menu
   },
   computed: {
-    ...mapState(['posts', 'isCompletePost', 'isMenuActive'])
+    ...mapState(['posts', 'isCompletePost', 'isMenuActive', 'scroll'])
   },
   mounted() {
     this.GET_POST(); // 記事データを取得
@@ -72,6 +76,15 @@ export default {
   width: 100%;
   height: 100%;
   display: block;
+}
+
+.inner {
+  position: static;
+
+  &.active {
+    position: fixed;
+    left: 0;
+  }
 }
 
 .containar {

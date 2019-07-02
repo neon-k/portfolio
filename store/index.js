@@ -1,15 +1,17 @@
 import Vuex from 'vuex';
 import { getPosts } from '~/plugins/contentful.js';
-import { ACTIVE_MENU, GET_POST, SUCCESS_POST, ERROR_POST, COMPLETE_POST } from './mutation-types';
+import { ACTIVE_MENU, GET_POST, SUCCESS_POST, ERROR_POST, COMPLETE_POST, SET_SCROLL } from './mutation-types';
 
 const state = {
   isMenuActive: false, // メニューボタンの開閉の真偽
   posts: null, // 記事データを格納
-  isCompletePost: false
+  isCompletePost: false,
+  scroll: 0 // スクロール量を格納
 };
 
 const actions = {
   [ACTIVE_MENU]({ commit }) {
+    commit(SET_SCROLL); // スクロールの値を格納
     commit(ACTIVE_MENU); // メニューボタンの真偽を反転
   },
   // 記事データを取得
@@ -40,6 +42,13 @@ const mutations = {
   },
   [COMPLETE_POST](state) {
     state.isCompletePost = true;
+  },
+  [SET_SCROLL](state) {
+    if (!state.isMenuActive) {
+      state.scroll = window.pageYOffset;
+    } else {
+      setTimeout(() => window.scrollTo(0, state.scroll), 0);
+    }
   }
 };
 
