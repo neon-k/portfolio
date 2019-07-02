@@ -1,8 +1,8 @@
 # Kota Portfolio
 
-私が製作した成果物を記録している、ポートフォリオです。
+製作した成果物を記録している、ポートフォリオです。
 
-[https://neon0624.com](https://happy-sammet-97e686.netlify.com)
+[http://neon0624.com](http://neon0624.com)
 
 
 ## Overview
@@ -11,8 +11,8 @@
   * 制作の雛型、静的ジェネレートに使っています。
 * CMS ([Contentful](https://www.contentful.com/))
   * 成果物のページの更新で使っています。
-* HostingServer&Deploy ([Netlify](https://www.netlify.com/))
-  * ホスティングサービスはNetlifyを使っています。mastarにpushしたタイミングでデプロイもする様に設定しています。
+* HostingServer&Deploy ([aws](https://aws.amazon.com/jp/))
+  * s3 + loudFront + CodePipeLineを使っています。
 * TemplateEngine([Pug](https://github.com/pugjs/pug))
 * css preprocessor([Sass](https://sass-lang.com/))
 * LintingTool([esLint](https://eslint.org/)&[Prettier](https://github.com/prettier/prettier)&[stylelint](https://stylelint.io/))
