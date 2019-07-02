@@ -1,9 +1,13 @@
 <template lang="pug">
   header.header
     .header-inner
-      h1.header-title
+      h1.header-title(
+        @click="onClickTitle"
+      )
         nuxt-link.header-link(to="/")
-          Logo(:color="color")
+          Logo(
+            :color="color"
+          )
       .menu-wrap(@click="ACTIVE_MENU")
         ToggleButton(:isActive="isMenuActive")
 </template>
@@ -33,7 +37,11 @@ export default {
   methods: {
     ...mapActions({
       ACTIVE_MENU
-    })
+    }),
+    // ロゴをクリックした時に使う
+    onClickTitle() {
+      return this.isMenuActive ? this.ACTIVE_MENU() : null;
+    }
   }
 };
 </script>
