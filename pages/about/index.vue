@@ -22,7 +22,7 @@
           li.about-contents-lists Wordpress
           li.about-contents-lists MySQL
           li.about-contents-lists PHP
-          li.about-contents-lists LaLavel
+          li.about-contents-lists Laravel
       .about-contents
         h2.about-contents-title CONTACT
         p.about-contents-description daiya50.ezweb.ne.jp@gmail.com
