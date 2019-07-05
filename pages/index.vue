@@ -69,7 +69,7 @@ export default {
 }
 
 .top-contents {
-  width: 33.333%;
+  width: 50%;
   overflow: hidden;
 
   @include media-screen($brackPoinSP) {
