@@ -34,9 +34,6 @@ export default {
   computed: {
     ...mapState('menu', ['isMenuActive'])
   },
-  mounted() {
-    console.log(mapActions);
-  },
   methods: {
     ...mapActions('menu', {
       ACTIVE_MENU

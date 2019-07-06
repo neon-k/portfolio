@@ -43,13 +43,13 @@ export default {
   },
   computed: {
     ...mapState('menu', ['isMenuActive', 'scroll']),
-    ...mapState('post', ['posts', 'isCompletePost'])
+    ...mapState(['posts', 'isCompletePost'])
   },
   mounted() {
     this.GET_POST(); // 記事データを取得
   },
   methods: {
-    ...mapActions('post', {
+    ...mapActions({
       GET_POST
     }),
 

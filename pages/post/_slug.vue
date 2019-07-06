@@ -56,7 +56,7 @@ export default {
     PostLink
   },
   computed: {
-    ...mapGetters('post', ['slugFilter'])
+    ...mapGetters(['slugFilter'])
   },
   methods: {
     // 個別ページのデータを受け取る
