@@ -23,6 +23,8 @@ import ArrowTop from '~/components/atoms/Arrow-top';
 import Logo from '~/components/atoms/Logo';
 import Sns from '~/components/molecules/Sns';
 
+import smoothScroll from '~/util/smooth-scroll';
+
 export default {
   name: 'Footer',
   components: {
@@ -39,10 +41,7 @@ export default {
   methods: {
     // スムーススクロールのアニメーション
     clickScroll() {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
+      smoothScroll();
     }
   }
 };
