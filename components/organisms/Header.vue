@@ -32,10 +32,13 @@ export default {
     };
   },
   computed: {
-    ...mapState(['isMenuActive'])
+    ...mapState('menu', ['isMenuActive'])
+  },
+  mounted() {
+    console.log(mapActions);
   },
   methods: {
-    ...mapActions({
+    ...mapActions('menu', {
       ACTIVE_MENU
     }),
     // ロゴをクリックした時に使う

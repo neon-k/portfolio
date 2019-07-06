@@ -33,8 +33,8 @@ export default {
     Card
   },
   computed: {
-    ...mapState(['posts']),
-    ...mapGetters(['postFilter'])
+    ...mapState('post', ['posts']),
+    ...mapGetters('post', ['postFilter'])
   }
 };
 </script>

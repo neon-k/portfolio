@@ -21,7 +21,7 @@ export default {
     Sns
   },
   methods: {
-    ...mapActions({
+    ...mapActions('menu', {
       ACTIVE_MENU
     })
   }
