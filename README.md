@@ -2,7 +2,7 @@
 
 製作した成果物を記録している、ポートフォリオです。
 
-[http://neon0624.com](http://neon0624.com)
+[サイトはこちら](http://w-neon.com)
 
 
 ## Overview
@@ -12,7 +12,7 @@
 * CMS ([Contentful](https://www.contentful.com/))
   * 成果物のページの更新で使っています。
 * HostingServer&Deploy ([aws](https://aws.amazon.com/jp/))
-  * s3 + cloudFront + CodePipeLineを使っています。
+  * s3 + CodePipeLineを使っています。
 * TemplateEngine([Pug](https://github.com/pugjs/pug))
 * css preprocessor([Sass](https://sass-lang.com/))
 * LintingTool([esLint](https://eslint.org/)&[Prettier](https://github.com/prettier/prettier)&[stylelint](https://stylelint.io/))
