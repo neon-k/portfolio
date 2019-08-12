@@ -1,7 +1,7 @@
 // ページ遷移のアニメーションに使う
 
 .slide-left-enter {
-  transform: translateX(-300px);
+  transform: translateX(-80px);
   opacity: 0;
 }
 
@@ -10,7 +10,7 @@
 }
 
 .slide-left-leave-to {
-  transform: translateX(300px);
+  transform: translateX(80px);
   opacity: 0;
 }
 

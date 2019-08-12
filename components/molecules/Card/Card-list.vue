@@ -4,7 +4,8 @@
       nuxt-link.card-link(
         :to="{ name: 'post-slug', params: { slug: slug } }"
       )
-      img.card-image(v-lazy="headerUrl.fields.file.url")
+      .card-image-wrap
+        img.card-image(v-lazy="headerUrl.fields.file.url")
       .card-details
         h2.card-title {{ title }}
         p.card-date {{ new Date(publishedAt).toLocaleDateString() }}
@@ -24,9 +25,7 @@ export default {
     },
     headerUrl: {
       type: Object,
-      default: () => {
-        return null;
-      }
+      default: () => null
     },
     publishedAt: {
       type: String,
@@ -58,7 +57,7 @@ export default {
     height: 100%;
     display: block;
     background-color: rgba($secondary, 0.6);
-    z-index: 0;
+    z-index: 1;
     opacity: 0;
     transition: 0.3s $easeOutSine;
   }
@@ -66,6 +65,10 @@ export default {
   &:hover {
     .card-details {
       opacity: 1;
+    }
+
+    .card-image {
+      transform: scale(1.05);
     }
 
     &::before {
@@ -81,6 +84,7 @@ export default {
   position: absolute;
   top: 0;
   left: 0;
+  z-index: 2;
 }
 
 .card-details {
@@ -92,9 +96,17 @@ export default {
   z-index: 1;
 }
 
+.card-image-wrap {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
 .card-image {
   width: 100%;
   display: block;
+  transition: transform 0.4s $easeOutSine;
+  transform-origin: center center;
 }
 
 .card-title {
