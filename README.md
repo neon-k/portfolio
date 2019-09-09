@@ -33,6 +33,6 @@ $ yarn generate
 # jsのコードをチェック + 自動修正
 $ yarn script:lint
 
-# cssのコードをチェック + 自動修正
+# cssのコードをチェック + 自動修正 
 $ yarn style:lint
 ```
