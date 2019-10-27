@@ -1,23 +1,23 @@
-import pkg from './package';
-import StylelintPlugin from 'stylelint-webpack-plugin';
-import { createClient } from 'contentful';
+import pkg from './package'
+import StylelintPlugin from 'stylelint-webpack-plugin'
+import { createClient } from 'contentful'
 
-require('dotenv').config();
+require('dotenv').config()
 
 // .envから環境変数を受け取る
-const { SPACE_ID, ACCESS_TOKEN } = process.env;
+const { SPACE_ID, ACCESS_TOKEN } = process.env
 
 const client = createClient({
   space: process.env.SPACE_ID,
   accessToken: process.env.ACCESS_TOKEN
-});
+})
 
 // デフォルトのtypeをセット
 const type = {
   content_type: 'posts' // 投稿のtype
-};
+}
 
-const getPosts = client.getEntries(type);
+const getPosts = client.getEntries(type)
 
 export default {
   mode: 'universal',
@@ -73,7 +73,7 @@ export default {
 
   // ビルド時に走らせる処理
   build: {
-    extend(config, ctx) {
+    extend (config, ctx) {
       // 開発のビルド
       if (ctx.isDev && ctx.isClient) {
         // eslint
@@ -86,7 +86,7 @@ export default {
             fix: true,
             failOnWarning: true
           }
-        });
+        })
 
         // styleLint
         config.plugins.push(
@@ -96,17 +96,17 @@ export default {
               fix: true
             }
           })
-        );
+        )
       }
     }
   },
   generate: {
-    routes() {
+    routes () {
       return getPosts.then(entries => {
         return [
           ...entries.items.map(entry => `/post/${entry.fields.slug}`) // 個別ページを吐き出す
-        ];
-      });
+        ]
+      })
     }
   },
   // 環境変数
@@ -114,4 +114,4 @@ export default {
     SPACE_ID,
     ACCESS_TOKEN
   }
-};
+}

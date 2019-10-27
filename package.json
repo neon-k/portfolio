@@ -8,6 +8,7 @@
     "dev": "nuxt",
     "build": "nuxt build --no-lock",
     "start": "yarn dev",
+    "start:ssr": "nuxt start",
     "generate": "nuxt generate",
     "browser": "browser-sync start -s 'dist'",
     "lint:script": "eslint --fix --ext .js,.vue --ignore-path .gitignore .",
