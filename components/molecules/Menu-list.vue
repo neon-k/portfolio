@@ -3,9 +3,9 @@
     li.menu-lists(@click="clickEvent")
       nuxt-link.menu-lists-link(to="/") Home
     li.menu-lists(@click="clickEvent")
-      nuxt-link.menu-lists-link(to="/about") About
+      nuxt-link.menu-lists-link(to="/about/") About
     li.menu-lists(@click="clickEvent")
-      nuxt-link.menu-lists-link(to="/post") Post
+      nuxt-link.menu-lists-link(to="/post/") Post
 </template>
 <script>
 export default {

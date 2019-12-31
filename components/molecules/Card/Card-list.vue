@@ -2,7 +2,7 @@
   .card
     .card-inner
       nuxt-link.card-link(
-        :to="{ name: 'post-slug', params: { slug: slug } }"
+        :to="{ name: 'post-slug', params: { slug } }"
       )
       .card-image-wrap
         img.card-image(v-lazy="headerUrl.fields.file.url")
