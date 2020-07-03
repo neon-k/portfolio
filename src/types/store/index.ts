@@ -1,4 +1,5 @@
 import { IExample } from './example';
+import { IGlobal } from './global';
 
 export interface IAction {
   type: string;
@@ -7,4 +8,5 @@ export interface IAction {
 
 export interface IStore {
   example: IExample;
+  global: IGlobal;
 }

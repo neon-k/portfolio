@@ -17,8 +17,6 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 export const initializeStore: (preloadedState?: any) => Store = (preloadedState?: any): Store => {
-  console.log('preloadedState', preloadedState);
-
   return createStore(
     reducers,
     preloadedState,
