@@ -1,15 +1,26 @@
-import * as React from 'react';
-import App, { AppProps } from 'next/app';
+import React, { FC, ReactElement, Fragment } from 'react';
+import withRedux from 'next-redux-wrapper';
+import { Provider } from 'react-redux';
+import { Store } from 'redux';
 
-class MyApp extends App {
-  render(): JSX.Element {
-    const { Component, pageProps }: AppProps = this.props;
-    return (
-      <React.Fragment>
+import { initializeStore } from '../store';
+
+type TProps = {
+  Component: any;
+  pageProps: any;
+  store: Store;
+};
+
+const MyApp: FC<TProps> = (props: TProps): ReactElement<TProps> => {
+  const { Component, pageProps }: TProps = props;
+
+  return (
+    <Fragment>
+      <Provider store={initializeStore()}>
         <Component {...pageProps} />
-      </React.Fragment>
-    );
-  }
-}
+      </Provider>
+    </Fragment>
+  );
+};
 
-export default MyApp;
+export default withRedux(initializeStore)(MyApp);
