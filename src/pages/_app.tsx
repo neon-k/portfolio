@@ -3,6 +3,8 @@ import withRedux from 'next-redux-wrapper';
 import { Provider } from 'react-redux';
 import { Store } from 'redux';
 
+import '../base/index.css';
+
 import { initializeStore } from '../store';
 
 type TProps = {

@@ -16,7 +16,6 @@ class CustomDocument extends Document implements CustomDocumentInterface {
     return (
       <Html lang="ja-JP">
         <Head>
-          {/* `<Head>` の内容は必要に応じて変更 */}
           <meta name="description" content={this.description} />
           <meta name="theme-color" content="#333" />
           <meta property="og:type" content="website" />
@@ -32,6 +31,10 @@ class CustomDocument extends Document implements CustomDocumentInterface {
           <meta name="twitter:image" content={`${this.url}/ogp.png`}></meta>
           <link rel="icon" href="/favicon.ico" />
           <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+          <link
+            href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Open+Sans&display=swap"
+            rel="stylesheet"
+          />
         </Head>
         <body>
           <Main />
