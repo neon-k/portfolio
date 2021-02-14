@@ -1,1 +1,0 @@
-export const SET_CONTNTFULL = 'SET_CONTNTFULL';
