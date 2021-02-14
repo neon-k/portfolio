@@ -56,22 +56,8 @@ const Contents: FC<TProps> = ({ data, isFocus, onClick }: TProps): ReactElement 
     <div
       css={css`
         width: 100%;
-        padding-top: 40px;
       `}
     >
-      <h2
-        css={css`
-          font-size: 40px;
-          color: #73787b;
-          margin-bottom: 40px;
-          letter-spacing: 0.05em;
-          font-weight: 200;
-          font-style: italic;
-          text-transform: uppercase;
-        `}
-      >
-        work
-      </h2>
       {/* コンテンツ 見出し */}
       <div
         className={isFocus ? 'focus' : ''}

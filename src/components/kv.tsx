@@ -75,6 +75,7 @@ const Kv: FC<TProps> = ({ isOpen }: TProps): ReactElement => {
             `}
           >
             <h1
+              className={isOpen ? 'open' : ''}
               css={css`
                 font-size: 40px;
                 letter-spacing: 0.2em;
@@ -83,11 +84,19 @@ const Kv: FC<TProps> = ({ isOpen }: TProps): ReactElement => {
                 font-weight: 200;
                 margin-bottom: 10px;
                 text-align: center;
+                transform: translate3d(0, -40px, 0);
+                transition: transform 0.4s ease;
+
+                &.open {
+                  transform: translate3d(0, 0, 0);
+                  transition: transform 0.6s ease;
+                }
               `}
             >
               kota ichikawa
             </h1>
             <p
+              className={isOpen ? 'open' : ''}
               css={css`
                 font-size: 20px;
                 letter-spacing: 0.2em;
@@ -95,6 +104,13 @@ const Kv: FC<TProps> = ({ isOpen }: TProps): ReactElement => {
                 color: #73787b;
                 font-weight: 200;
                 text-align: center;
+                transform: translate3d(0, -40px, 0);
+                transition: transform 0.4s ease;
+
+                &.open {
+                  transform: translate3d(0, 0, 0);
+                  transition: transform 0.6s ease;
+                }
               `}
             >
               web engineer
@@ -102,13 +118,20 @@ const Kv: FC<TProps> = ({ isOpen }: TProps): ReactElement => {
           </div>
 
           <div
+            className={isOpen ? 'open' : ''}
             css={css`
               position: absolute;
               bottom: 0;
               left: 50%;
               color: #73787b;
               font-weight: 200;
-              transform: translateX(-50%);
+              transform: translate3d(-50%, 20px, 0);
+              transition: transform 0.4s ease;
+
+              &.open {
+                opacity: 1;
+                transform: translate3d(-50%, 0, 0);
+              }
             `}
           >
             <p
