@@ -53,7 +53,6 @@ const description = css`
 `;
 
 const About: FC<TProps> = ({ scroll }: TProps): ReactElement => {
-  console.log(scroll);
   const [isTitle, setIsTitle] = useState<boolean>(false);
   const [isDescription, setIsDescription] = useState<boolean>(false);
 
@@ -114,7 +113,7 @@ const About: FC<TProps> = ({ scroll }: TProps): ReactElement => {
             css={css`
               display: inline-block;
               transform: translate3d(-100%, 0, 0);
-              transition: transform 0.4s ease-out;
+              transition: transform 0.4s 0.5s ease-out;
             `}
           >
             a
@@ -131,7 +130,7 @@ const About: FC<TProps> = ({ scroll }: TProps): ReactElement => {
             css={css`
               display: inline-block;
               transform: translate3d(-100%, 0, 0);
-              transition: transform 0.4s 0.05s ease-out;
+              transition: transform 0.4s 0.55s ease-out;
             `}
           >
             b
@@ -148,7 +147,7 @@ const About: FC<TProps> = ({ scroll }: TProps): ReactElement => {
             css={css`
               display: inline-block;
               transform: translate3d(-100%, 0, 0);
-              transition: transform 0.4s 0.1s ease-out;
+              transition: transform 0.4s 0.6s ease-out;
             `}
           >
             o
@@ -165,7 +164,7 @@ const About: FC<TProps> = ({ scroll }: TProps): ReactElement => {
             css={css`
               display: inline-block;
               transform: translate3d(-100%, 0, 0);
-              transition: transform 0.4s 0.15s ease-out;
+              transition: transform 0.4s 0.65s ease-out;
             `}
           >
             u
@@ -182,7 +181,7 @@ const About: FC<TProps> = ({ scroll }: TProps): ReactElement => {
             css={css`
               display: inline-block;
               transform: translate3d(-100%, 0, 0);
-              transition: transform 0.4s 0.2s ease-out;
+              transition: transform 0.4s 0.7s ease-out;
             `}
           >
             t

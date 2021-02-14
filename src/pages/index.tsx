@@ -4,6 +4,7 @@ import { css } from '@emotion/react';
 import { useHook, types } from '~/useHooks';
 
 import { offsetTop } from '~/utils/offset';
+import { smoothscroll } from '~/utils/smooth-scroll';
 
 import Contents from '~/components/work';
 import Header from '~/components/header';
@@ -29,6 +30,8 @@ const Home: FC = (): ReactElement => {
   const { isHeader, isKv, scroll } = state;
 
   const titleRef = useRef(null);
+  const aboutRef = useRef(null);
+  const workRef = useRef(null);
 
   const onScroll = useCallback(() => {
     const top = window.pageYOffset || document.documentElement.scrollTop;
@@ -82,12 +85,29 @@ const Home: FC = (): ReactElement => {
     }
   }, [scroll]);
 
+  const onClickWork = () => {
+    if (!workRef.current) {
+      return;
+    }
+
+    smoothscroll(offsetTop(workRef.current), 0.6);
+  };
+
+  const onClickAbout = () => {
+    if (!aboutRef.current) {
+      return;
+    }
+
+    smoothscroll(offsetTop(aboutRef.current), 0.6);
+  };
+
   return (
     <div css={Wrap}>
-      <Header isOpen={isHeader} />
+      <Header isOpen={isHeader} onClickWork={onClickWork} onClickAbout={onClickAbout} />
       <Kv isOpen={isKv} />
       <div css={Inner}>
         <div
+          ref={workRef}
           css={css`
             padding-top: 40px;
           `}
@@ -130,7 +150,7 @@ const Home: FC = (): ReactElement => {
                 css={css`
                   display: inline-block;
                   transform: translate3d(-100%, 0, 0);
-                  transition: transform 0.4s ease-out;
+                  transition: transform 0.4s 0.5s ease-out;
                 `}
               >
                 w
@@ -147,7 +167,7 @@ const Home: FC = (): ReactElement => {
                 css={css`
                   display: inline-block;
                   transform: translate3d(-100%, 0, 0);
-                  transition: transform 0.4s 0.05s ease-out;
+                  transition: transform 0.4s 0.55s ease-out;
                 `}
               >
                 o
@@ -164,7 +184,7 @@ const Home: FC = (): ReactElement => {
                 css={css`
                   display: inline-block;
                   transform: translate3d(-100%, 0, 0);
-                  transition: transform 0.4s 0.1s ease-out;
+                  transition: transform 0.4s 0.6s ease-out;
                 `}
               >
                 r
@@ -181,7 +201,7 @@ const Home: FC = (): ReactElement => {
                 css={css`
                   display: inline-block;
                   transform: translate3d(-100%, 0, 0);
-                  transition: transform 0.4s 0.15s ease-out;
+                  transition: transform 0.4s 0.65s ease-out;
                 `}
               >
                 k
@@ -191,7 +211,7 @@ const Home: FC = (): ReactElement => {
           <div
             css={css`
               width: 100%;
-              margin-bottom: 80px;
+              margin-bottom: 120px;
 
               &:last-child {
                 margin-bottom: 0;
@@ -202,12 +222,15 @@ const Home: FC = (): ReactElement => {
               onClick={() => {
                 setFocusIndex(!focusIndex);
               }}
+              scroll={scroll}
               isFocus={focusIndex}
               data={null}
             />
           </div>
         </div>
-        <About scroll={scroll} />
+        <div ref={aboutRef}>
+          <About scroll={scroll} />
+        </div>
       </div>
     </div>
   );

@@ -8,6 +8,8 @@ import { HEADER_ZINDEX } from '~/constants/style';
 
 type TProps = {
   isOpen: boolean;
+  onClickWork: () => void;
+  onClickAbout: () => void;
 };
 
 // ==========================================
@@ -51,7 +53,7 @@ const list = css`
   }
 `;
 
-const Header: FC<TProps> = ({ isOpen }: TProps): ReactElement => {
+const Header: FC<TProps> = ({ isOpen, onClickAbout, onClickWork }: TProps): ReactElement => {
   return (
     <header
       className={isOpen ? 'open' : ''}
@@ -84,8 +86,12 @@ const Header: FC<TProps> = ({ isOpen }: TProps): ReactElement => {
             display: flex;
           `}
         >
-          <li css={list}>work</li>
-          <li css={list}>about</li>
+          <li css={list} onClick={() => onClickWork()}>
+            work
+          </li>
+          <li css={list} onClick={() => onClickAbout()}>
+            about
+          </li>
         </ul>
       </div>
     </header>

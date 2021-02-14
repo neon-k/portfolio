@@ -1,7 +1,11 @@
-import React, { FC, ReactElement, useRef, useEffect } from 'react';
+import React, { FC, ReactElement, useRef, useEffect, useState } from 'react';
 import { css } from '@emotion/react';
 
 import gsap from 'gsap';
+
+import { offsetTop } from '~/utils/offset';
+
+import { smoothscroll } from '~/utils/smooth-scroll';
 
 // ==========================================
 // Type
@@ -11,6 +15,7 @@ type TProps = {
   onClick: () => void;
   data: any;
   isFocus: boolean;
+  scroll: number;
 };
 
 // ==========================================
@@ -19,14 +24,17 @@ type TProps = {
 
 // このコンポーネントはpropsをもらう場合のコンポーネント
 
-const Contents: FC<TProps> = ({ data, isFocus, onClick }: TProps): ReactElement => {
+const Contents: FC<TProps> = ({ data, isFocus, scroll, onClick }: TProps): ReactElement => {
   console.log(data);
 
+  const [isAnimation, setIsAnimation] = useState<boolean>(false);
+
+  const wrapRef = useRef(null);
   const contentsRef = useRef<HTMLDivElement>(null);
   const contentsChildRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!contentsRef.current || !contentsChildRef.current) {
+    if (!contentsRef.current || !contentsChildRef.current || !wrapRef.current) {
       return;
     }
 
@@ -42,6 +50,8 @@ const Contents: FC<TProps> = ({ data, isFocus, onClick }: TProps): ReactElement 
         duration: 0.8,
         ease: 'sine.out'
       });
+
+      smoothscroll(offsetTop(wrapRef.current), 0.6);
     } else {
       gsap.to(contentsRef.current, {
         opacity: 0,
@@ -52,21 +62,54 @@ const Contents: FC<TProps> = ({ data, isFocus, onClick }: TProps): ReactElement 
     }
   }, [isFocus]);
 
+  useEffect(() => {
+    if (!wrapRef.current) {
+      return;
+    }
+
+    if (offsetTop(wrapRef.current) < scroll && !isAnimation) {
+      setIsAnimation(true);
+    }
+  }, [scroll]);
+
   return (
     <div
+      ref={wrapRef}
+      className={isAnimation ? 'open' : ''}
       css={css`
         width: 100%;
+        position: relative;
+        transform-origin: left;
+        transform: scaleX(0);
+        transition: transform 0.4s 0.4s ease-out;
+
+        &::before {
+          content: '';
+          position: absolute;
+          width: 100%;
+          padding-top: 56.25%;
+          background-color: #2e2e2e;
+        }
+
+        &.open {
+          transform: scaleX(1);
+
+          .image-wrap {
+            opacity: 1;
+          }
+        }
       `}
     >
       {/* コンテンツ 見出し */}
       <div
-        className={isFocus ? 'focus' : ''}
+        className={`image-wrap ${isFocus ? 'focus' : ''}`}
         onClick={onClick}
         css={css`
           width: 100%;
           position: relative;
-          background-color: #000;
           cursor: pointer;
+          transition: opacity 0.4s 0.8s linear;
+          opacity: 0;
 
           &::before {
             content: '';
