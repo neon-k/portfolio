@@ -56,8 +56,22 @@ const Contents: FC<TProps> = ({ data, isFocus, onClick }: TProps): ReactElement 
     <div
       css={css`
         width: 100%;
+        padding-top: 40px;
       `}
     >
+      <h2
+        css={css`
+          font-size: 40px;
+          color: #73787b;
+          margin-bottom: 40px;
+          letter-spacing: 0.05em;
+          font-weight: 200;
+          font-style: italic;
+          text-transform: uppercase;
+        `}
+      >
+        work
+      </h2>
       {/* コンテンツ 見出し */}
       <div
         className={isFocus ? 'focus' : ''}
@@ -120,7 +134,7 @@ const Contents: FC<TProps> = ({ data, isFocus, onClick }: TProps): ReactElement 
               padding: 60px;
             `}
           >
-            <h2
+            <h3
               css={css`
                 font-size: 24px;
                 letter-spacing: 0.01em;
@@ -131,7 +145,7 @@ const Contents: FC<TProps> = ({ data, isFocus, onClick }: TProps): ReactElement 
               `}
             >
               YOYOGI CANDLE 2020
-            </h2>
+            </h3>
             <p
               css={css`
                 font-family: 'Benne', serif;

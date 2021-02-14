@@ -60,9 +60,9 @@ const Header: FC<TProps> = ({ isOpen }: TProps): ReactElement => {
         position: fixed;
         top: 0;
         left: 0;
-        opacity: 1;
-        pointer-events: auto;
-        transition: opacity 0.2 linear;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.2s linear;
         z-index: ${HEADER_ZINDEX};
 
         &.open {
@@ -84,7 +84,7 @@ const Header: FC<TProps> = ({ isOpen }: TProps): ReactElement => {
             display: flex;
           `}
         >
-          <li css={list}>contents</li>
+          <li css={list}>work</li>
           <li css={list}>about</li>
         </ul>
       </div>

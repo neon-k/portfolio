@@ -50,6 +50,7 @@ const Kv: FC<TProps> = ({ isOpen }: TProps): ReactElement => {
           top: 0;
           left: 0;
           opacity: 0;
+          transition: opacity 0.2s linear;
 
           &.open {
             opacity: 1;
