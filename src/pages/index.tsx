@@ -3,10 +3,11 @@ import { css } from '@emotion/react';
 
 import Contents from '~/components/contnets';
 import Header from '~/components/header';
+import Kv from '~/components/kv';
 
 const Wrap = css`
   width: 100%;
-  padding: 60px 10px;
+  padding: 0 10px 40px;
 `;
 
 const Inner = css`
@@ -31,6 +32,7 @@ const Home: FC = (): ReactElement => {
           `}
         >
           <Header isOpen={true} />
+          <Kv isOpen={true} />
           <Contents
             onClick={() => {
               setFocusIndex(!focusIndex);

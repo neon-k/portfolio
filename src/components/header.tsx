@@ -1,5 +1,6 @@
 import React, { FC, ReactElement } from 'react';
 import { css } from '@emotion/react';
+import { HEADER_ZINDEX } from '~/constants/style';
 
 // ==========================================
 // Type
@@ -62,6 +63,7 @@ const Header: FC<TProps> = ({ isOpen }: TProps): ReactElement => {
         opacity: 1;
         pointer-events: auto;
         transition: opacity 0.2 linear;
+        z-index: ${HEADER_ZINDEX};
 
         &.open {
           opacity: 1;
