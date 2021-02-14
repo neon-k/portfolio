@@ -58,7 +58,7 @@ class CustomDocument extends Document implements CustomDocumentInterface {
           <link rel="icon" href="/favicon.ico" />
           <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
           <link
-            href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700&family=Open+Sans&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Benne&display=swap"
             rel="stylesheet"
           />
         </Head>
