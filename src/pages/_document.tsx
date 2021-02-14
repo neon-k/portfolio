@@ -1,5 +1,14 @@
 import * as React from 'react';
-import Document, { Html, Head, Main, NextScript } from 'next/document';
+import Document, {
+  Html,
+  Head,
+  Main,
+  NextScript,
+  DocumentContext,
+  DocumentInitialProps
+} from 'next/document';
+
+import { extractCritical } from '@emotion/server';
 
 interface CustomDocumentInterface {
   url: string;
@@ -11,6 +20,23 @@ class CustomDocument extends Document implements CustomDocumentInterface {
   url = 'https://example.com';
   title = 'Demo Next.js';
   description = 'Demo of Next.js';
+
+  static async getInitialProps(ctx: DocumentContext): Promise<DocumentInitialProps> {
+    const initialProps = await Document.getInitialProps(ctx);
+    const styles = extractCritical(initialProps.html);
+    return {
+      ...initialProps,
+      styles: (
+        <>
+          {initialProps.styles}
+          <style
+            data-emotion-css={styles.ids.join(' ')}
+            dangerouslySetInnerHTML={{ __html: styles.css }}
+          />
+        </>
+      )
+    };
+  }
 
   render(): JSX.Element {
     return (

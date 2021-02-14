@@ -1,28 +1,21 @@
-import React, { FC, ReactElement, Fragment } from 'react';
-import withRedux from 'next-redux-wrapper';
-import { Provider } from 'react-redux';
-import { Store } from 'redux';
-
+import React, { FC, ReactElement } from 'react';
+import { CacheProvider } from '@emotion/react';
+import { cache } from '@emotion/css';
 import '../base/index.css';
-
-import { initializeStore } from '../store';
 
 type TProps = {
   Component: any;
   pageProps: any;
-  store: Store;
 };
 
 const MyApp: FC<TProps> = (props: TProps): ReactElement<TProps> => {
   const { Component, pageProps }: TProps = props;
 
   return (
-    <Fragment>
-      <Provider store={initializeStore()}>
-        <Component {...pageProps} />
-      </Provider>
-    </Fragment>
+    <CacheProvider value={cache}>
+      <Component {...pageProps} />
+    </CacheProvider>
   );
 };
 
-export default withRedux(initializeStore)(MyApp);
+export default MyApp;

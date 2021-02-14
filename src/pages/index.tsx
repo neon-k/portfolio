@@ -1,23 +1,14 @@
 import React, { FC, ReactElement } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { setCmsData } from '../actions/global';
+import { css } from '@emotion/react';
 
-import { IStore } from '../types/store';
+const hello = css`
+  color: red;
+`;
 
 const Home: FC = (): ReactElement => {
-  const dispatch = useDispatch();
-
-  const sceneState = useSelector((state: IStore) => state.global.data);
-
-  console.log(sceneState);
-
-  const onClick = () => {
-    dispatch(setCmsData());
-  };
-
   return (
     <div className="container">
-      <button onClick={onClick}>ddddddd</button>
+      <button css={hello}>ddddddd</button>
     </div>
   );
 };
