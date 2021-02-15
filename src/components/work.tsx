@@ -5,10 +5,13 @@ import gsap from 'gsap';
 
 import { offsetTop } from '~/utils/offset';
 
+import { TWork } from '~/api';
+
 import { smoothscroll } from '~/utils/smooth-scroll';
 import { largeScreenWidthLess, mediumScreenWidthOver } from '~/utils/media';
 import { getVw } from '~/utils/size';
 import { fontVw } from '~/utils/font';
+import { nl2br } from '~/utils/nl2br';
 
 // ==========================================
 // Type
@@ -16,7 +19,7 @@ import { fontVw } from '~/utils/font';
 
 type TProps = {
   onClick: () => void;
-  data: any;
+  data: TWork;
   isFocus: boolean;
   scroll: number;
 };
@@ -28,8 +31,6 @@ type TProps = {
 // このコンポーネントはpropsをもらう場合のコンポーネント
 
 const Contents: FC<TProps> = ({ data, isFocus, scroll, onClick }: TProps): ReactElement => {
-  console.log(data);
-
   const [isAnimation, setIsAnimation] = useState<boolean>(false);
 
   const wrapRef = useRef<HTMLDivElement>(null);
@@ -146,7 +147,7 @@ const Contents: FC<TProps> = ({ data, isFocus, scroll, onClick }: TProps): React
             background-repeat: no-repeat;
             background-size: cover;
           `}
-          style={{ backgroundImage: 'url(/images/example/yoyogi-candle-01.jpg)' }}
+          style={{ backgroundImage: `url(${data.image.url})` }}
         />
         <div
           className="hover"
@@ -188,7 +189,7 @@ const Contents: FC<TProps> = ({ data, isFocus, scroll, onClick }: TProps): React
                 `)}
               `}
             >
-              YOYOGI CANDLE 2020
+              {data.title}
             </h3>
             <p
               css={css`
@@ -204,7 +205,7 @@ const Contents: FC<TProps> = ({ data, isFocus, scroll, onClick }: TProps): React
                 `)}
               `}
             >
-              web app
+              {data.type}
             </p>
           </div>
         </div>
@@ -277,9 +278,7 @@ const Contents: FC<TProps> = ({ data, isFocus, scroll, onClick }: TProps): React
                 `)}
               `}
             >
-              東京オリンピックに向けた、プロジェクションマッピングと連動したwebアプリ開発の案件です。
-              <br />
-              自分は音と時間を連動したアニメーション作成を担当しました。
+              {nl2br(data.description)}
             </p>
           </div>
 
@@ -327,61 +326,63 @@ const Contents: FC<TProps> = ({ data, isFocus, scroll, onClick }: TProps): React
                 `)}
               `}
             >
-              React, TypeScript
+              {data.skill}
             </p>
           </div>
 
-          <div
-            css={css`
-              margin-bottom: 32px;
-
-              &:last-child {
-                margin-bottom: 0;
-              }
-
-              ${largeScreenWidthLess(css`
-                margin-bottom: ${getVw(32)};
-              `)}
-            `}
-          >
-            <h3
+          {data.link ? (
+            <div
               css={css`
-                font-size: 18px;
-                letter-spacing: 0.1em;
-                margin-bottom: 12px;
-                text-transform: uppercase;
-                font-weight: 400;
-                font-style: italic;
+                margin-bottom: 32px;
+
+                &:last-child {
+                  margin-bottom: 0;
+                }
 
                 ${largeScreenWidthLess(css`
-                  ${fontVw(18)};
-
-                  margin-bottom: ${getVw(12)};
+                  margin-bottom: ${getVw(32)};
                 `)}
               `}
             >
-              link
-            </h3>
+              <h3
+                css={css`
+                  font-size: 18px;
+                  letter-spacing: 0.1em;
+                  margin-bottom: 12px;
+                  text-transform: uppercase;
+                  font-weight: 400;
+                  font-style: italic;
 
-            <a
-              target="_blank"
-              rel="noreferrer"
-              css={css`
-                font-size: 12px;
-                letter-spacing: 0.1em;
-                font-weight: 400;
-                line-height: 1.4;
-                color: #73787b;
+                  ${largeScreenWidthLess(css`
+                    ${fontVw(18)};
 
-                ${largeScreenWidthLess(css`
-                  ${fontVw(12)}
-                `)}
-              `}
-              href="http://www.htmq.com/style/font-style.shtml"
-            >
-              http://www.htmq.com/style/font-style.shtml
-            </a>
-          </div>
+                    margin-bottom: ${getVw(12)};
+                  `)}
+                `}
+              >
+                link
+              </h3>
+
+              <a
+                target="_blank"
+                rel="noreferrer"
+                css={css`
+                  font-size: 12px;
+                  letter-spacing: 0.1em;
+                  font-weight: 400;
+                  line-height: 1.4;
+                  color: #73787b;
+
+                  ${largeScreenWidthLess(css`
+                    ${fontVw(12)}
+                  `)}
+                `}
+                href="http://www.htmq.com/style/font-style.shtml"
+              >
+                http://www.htmq.com/style/font-style.shtml
+              </a>
+            </div>
+          ) : null}
         </div>
       </div>
       {/* コンテンツ 内容 ここまで */}

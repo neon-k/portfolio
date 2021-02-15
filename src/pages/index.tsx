@@ -21,6 +21,7 @@ import { largeScreenWidthLess } from '~/utils/media';
 import { getVw } from '~/utils/size';
 import { fontVw } from '~/utils/font';
 import gsap from 'gsap';
+import { TWork } from '~/api';
 
 const Wrap = css`
   width: 100%;
@@ -106,14 +107,15 @@ const Home: FC = (): ReactElement => {
 
   // ファーストビュー
   useEffect(() => {
-    onScroll();
-    window.addEventListener('scroll', onScroll);
-
     if (loadingRef.current) {
       disableBodyScroll(loadingRef.current);
     }
 
     const init = async () => {
+      await sleep(100);
+
+      window.scrollTo(0, 0);
+
       const result = await getAllData();
 
       // データをセット
@@ -126,6 +128,10 @@ const Home: FC = (): ReactElement => {
 
       // ローディング解除
       setIsReady(true);
+
+      // スクロールイベント発火
+      onScroll();
+      window.addEventListener('scroll', onScroll);
     };
 
     init();
@@ -182,6 +188,39 @@ const Home: FC = (): ReactElement => {
     }
 
     smoothscroll(offsetTop(aboutRef.current), 0.6);
+  };
+
+  const contnets = () => {
+    if (!state.data) {
+      return null;
+    }
+
+    const { work } = state.data;
+
+    return work.contents.map((r: TWork, i: number) => {
+      return (
+        <div
+          key={i}
+          css={css`
+            width: 100%;
+            margin-bottom: 120px;
+
+            &:last-child {
+              margin-bottom: 0;
+            }
+          `}
+        >
+          <Contents
+            onClick={() => {
+              setFocusIndex(!focusIndex);
+            }}
+            scroll={scroll}
+            isFocus={focusIndex}
+            data={r}
+          />
+        </div>
+      );
+    });
   };
 
   return (
@@ -308,25 +347,7 @@ const Home: FC = (): ReactElement => {
               </span>
             </span>
           </h2>
-          <div
-            css={css`
-              width: 100%;
-              margin-bottom: 120px;
-
-              &:last-child {
-                margin-bottom: 0;
-              }
-            `}
-          >
-            <Contents
-              onClick={() => {
-                setFocusIndex(!focusIndex);
-              }}
-              scroll={scroll}
-              isFocus={focusIndex}
-              data={null}
-            />
-          </div>
+          {contnets()}
         </div>
         <div ref={aboutRef}>
           <About scroll={scroll} />

@@ -8,8 +8,6 @@ export const fontVw: (size: number, viewPort?: number) => SerializedStyles = (
   size: number,
   viewPort?: number
 ): SerializedStyles => {
-  console.log(viewPort);
-
   const v = viewPort ? viewPort : 375;
 
   return css`
