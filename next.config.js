@@ -1,9 +1,13 @@
 const { resolve } = require('path');
 
 const nextConfig = {
+  env: {
+    API_KEY: process.env.API_KEY,
+  },
   webpack: config => {
     // src ディレクトリをエイリアスのルートに設定
     config.resolve.alias['~'] = resolve(__dirname, 'src');
+
 
     config.module.rules.push({
       enforce: 'pre',

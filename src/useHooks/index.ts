@@ -1,9 +1,12 @@
 import { useReducer, Reducer, Dispatch } from 'react';
 
+import { TAllData } from '~/api';
+
 type TState = {
   isHeader: boolean;
   isKv: boolean;
   scroll: number;
+  data: TAllData;
 };
 
 export interface IAction {
@@ -14,13 +17,15 @@ export interface IAction {
 export const types = {
   SET_IS_HEADER: 'SET_IS_HEADER',
   SET_IS_KV: 'SET_IS_KV',
-  SET_SCROLL: 'SET_SCROLL'
+  SET_SCROLL: 'SET_SCROLL',
+  SET_DATA: 'SET_DATA'
 };
 
 const initialState: TState = {
   isHeader: false,
   isKv: true,
-  scroll: 0
+  scroll: 0,
+  data: null
 };
 
 export const useHook: () => {
@@ -47,6 +52,13 @@ export const useHook: () => {
         return {
           ...state,
           scroll: action.payload.scroll
+        };
+        break;
+
+      case types.SET_DATA:
+        return {
+          ...state,
+          data: action.payload.data
         };
         break;
     }

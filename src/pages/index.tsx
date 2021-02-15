@@ -7,13 +7,15 @@ import { useHook, types } from '~/useHooks';
 import { offsetTop } from '~/utils/offset';
 import { gsapTo } from '~/utils/gsap';
 import { smoothscroll } from '~/utils/smooth-scroll';
+import { sleep } from '~/utils/sleep';
 
 import Contents from '~/components/work';
 import Header from '~/components/header';
 import Kv from '~/components/kv';
 import About from '~/components/about';
-
 import Loader from '~/components/loader';
+
+import { getAllData } from '~/api/connection';
 
 import { largeScreenWidthLess } from '~/utils/media';
 import { getVw } from '~/utils/size';
@@ -49,9 +51,7 @@ const LoadingInner = css`
 const Home: FC = (): ReactElement => {
   const [focusIndex, setFocusIndex] = useState<boolean>(false);
   const [isTitle, setIsTitle] = useState<boolean>(false);
-  const [isReady, setIsReady] = useState<boolean>(false);
-
-  console.log(setIsReady);
+  const [isReady, setIsReady] = useState<boolean>(true);
 
   const { state, dispatch } = useHook();
 
@@ -104,6 +104,7 @@ const Home: FC = (): ReactElement => {
     }
   }, []);
 
+  // ファーストビュー
   useEffect(() => {
     onScroll();
     window.addEventListener('scroll', onScroll);
@@ -111,11 +112,31 @@ const Home: FC = (): ReactElement => {
     if (loadingRef.current) {
       disableBodyScroll(loadingRef.current);
     }
+
+    const init = async () => {
+      const result = await getAllData();
+
+      // データをセット
+      dispatch({
+        type: types.SET_DATA,
+        payload: {
+          data: result
+        }
+      });
+
+      // ローディング解除
+      setIsReady(true);
+    };
+
+    init();
   }, []);
 
+  // ローディング解除のアニメーション
   useEffect(() => {
     if (loadingRef.current && isReady) {
       const func = async () => {
+        await sleep(1000);
+
         await gsapTo(loadingInnerRef.current, {
           opacity: 0,
           duration: 1
@@ -140,6 +161,7 @@ const Home: FC = (): ReactElement => {
     }
   }, [isReady]);
 
+  // スクロールのイベント
   useEffect(() => {
     if (offsetTop(titleRef.current) < scroll && !isTitle) {
       setIsTitle(true);
