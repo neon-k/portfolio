@@ -2,6 +2,9 @@ import React, { FC, ReactElement, useState, useEffect, useRef } from 'react';
 import { css } from '@emotion/react';
 
 import { offsetTop } from '~/utils/offset';
+import { largeScreenWidthLess } from '~/utils/media';
+import { getVw } from '~/utils/size';
+import { fontVw } from '~/utils/font';
 
 // ==========================================
 // Type
@@ -21,6 +24,10 @@ const list = css`
   &:last-child {
     margin-bottom: 0;
   }
+
+  ${largeScreenWidthLess(css`
+    margin-bottom: ${getVw(32)};
+  `)}
 `;
 
 const title = css`
@@ -28,10 +35,15 @@ const title = css`
   letter-spacing: 0.2em;
   margin-bottom: 16px;
   font-weight: 400;
-  margin-right: 10px;
   color: #73787b;
   font-style: italic;
   text-transform: uppercase;
+
+  ${largeScreenWidthLess(css`
+    ${fontVw(14)}
+
+    margin-bottom: ${getVw(14)};
+  `)}
 `;
 
 const text = css`
@@ -40,6 +52,12 @@ const text = css`
   margin-bottom: 12px;
   font-weight: 400;
   color: #73787b;
+
+  ${largeScreenWidthLess(css`
+    ${fontVw(14)}
+
+    margin-bottom: ${getVw(12)};
+  `)}
 `;
 
 const description = css`
@@ -50,6 +68,12 @@ const description = css`
   font-weight: 400;
   letter-spacing: 0.01em;
   color: #73787b;
+
+  ${largeScreenWidthLess(css`
+    ${fontVw(14)}
+
+    margin-bottom: ${getVw(12)};
+  `)}
 `;
 
 const About: FC<TProps> = ({ scroll }: TProps): ReactElement => {
@@ -100,6 +124,12 @@ const About: FC<TProps> = ({ scroll }: TProps): ReactElement => {
               transform: translate3d(0, 0, 0);
             }
           }
+
+          ${largeScreenWidthLess(css`
+            ${fontVw(28)}
+
+            margin-bottom: ${getVw(20)};
+          `)}
         `}
       >
         <span

@@ -1,15 +1,24 @@
 import React, { FC, ReactElement, useState, useEffect, useCallback, useRef } from 'react';
 import { css } from '@emotion/react';
+import { disableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 
 import { useHook, types } from '~/useHooks';
 
 import { offsetTop } from '~/utils/offset';
+import { gsapTo } from '~/utils/gsap';
 import { smoothscroll } from '~/utils/smooth-scroll';
 
 import Contents from '~/components/work';
 import Header from '~/components/header';
 import Kv from '~/components/kv';
 import About from '~/components/about';
+
+import Loader from '~/components/loader';
+
+import { largeScreenWidthLess } from '~/utils/media';
+import { getVw } from '~/utils/size';
+import { fontVw } from '~/utils/font';
+import gsap from 'gsap';
 
 const Wrap = css`
   width: 100%;
@@ -21,9 +30,28 @@ const Inner = css`
   margin: 0 auto;
 `;
 
+const Loading = css`
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background-color: #1d1d1d;
+  top: 0;
+  left: 0;
+  z-index: 99999;
+`;
+
+const LoadingInner = css`
+  width: 100%;
+  height: 100%;
+  position: relative;
+`;
+
 const Home: FC = (): ReactElement => {
   const [focusIndex, setFocusIndex] = useState<boolean>(false);
   const [isTitle, setIsTitle] = useState<boolean>(false);
+  const [isReady, setIsReady] = useState<boolean>(false);
+
+  console.log(setIsReady);
 
   const { state, dispatch } = useHook();
 
@@ -32,6 +60,8 @@ const Home: FC = (): ReactElement => {
   const titleRef = useRef(null);
   const aboutRef = useRef(null);
   const workRef = useRef(null);
+  const loadingRef = useRef(null);
+  const loadingInnerRef = useRef(null);
 
   const onScroll = useCallback(() => {
     const top = window.pageYOffset || document.documentElement.scrollTop;
@@ -77,7 +107,38 @@ const Home: FC = (): ReactElement => {
   useEffect(() => {
     onScroll();
     window.addEventListener('scroll', onScroll);
+
+    if (loadingRef.current) {
+      disableBodyScroll(loadingRef.current);
+    }
   }, []);
+
+  useEffect(() => {
+    if (loadingRef.current && isReady) {
+      const func = async () => {
+        await gsapTo(loadingInnerRef.current, {
+          opacity: 0,
+          duration: 1
+        });
+
+        await gsapTo(loadingRef.current, {
+          scaleX: 0,
+          delay: 0.4,
+          transformOrigin: 'right',
+          duration: 0.4,
+          ease: 'expo.out'
+        });
+
+        gsap.set(loadingRef.current, {
+          display: 'none'
+        });
+
+        clearAllBodyScrollLocks();
+      };
+
+      func();
+    }
+  }, [isReady]);
 
   useEffect(() => {
     if (offsetTop(titleRef.current) < scroll && !isTitle) {
@@ -103,6 +164,11 @@ const Home: FC = (): ReactElement => {
 
   return (
     <div css={Wrap}>
+      <div css={Loading} ref={loadingRef}>
+        <div css={LoadingInner} ref={loadingInnerRef}>
+          <Loader />
+        </div>
+      </div>
       <Header isOpen={isHeader} onClickWork={onClickWork} onClickAbout={onClickAbout} />
       <Kv isOpen={isKv} />
       <div css={Inner}>
@@ -110,6 +176,12 @@ const Home: FC = (): ReactElement => {
           ref={workRef}
           css={css`
             padding-top: 40px;
+            margin-bottom: 60px;
+
+            ${largeScreenWidthLess(css`
+              padding-top: ${getVw(30)};
+              margin-bottom: ${getVw(20)};
+            `)}
           `}
         >
           <h2
@@ -137,6 +209,12 @@ const Home: FC = (): ReactElement => {
                   transform: translate3d(0, 0, 0);
                 }
               }
+
+              ${largeScreenWidthLess(css`
+                ${fontVw(28)}
+
+                margin-bottom: ${getVw(20)};
+              `)}
             `}
           >
             <span

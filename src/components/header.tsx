@@ -2,6 +2,8 @@ import React, { FC, ReactElement } from 'react';
 import { css } from '@emotion/react';
 import { HEADER_ZINDEX } from '~/constants/style';
 
+import { largeScreenWidthLess } from '~/utils/media';
+
 // ==========================================
 // Type
 // ==========================================
@@ -71,6 +73,10 @@ const Header: FC<TProps> = ({ isOpen, onClickAbout, onClickWork }: TProps): Reac
           opacity: 1;
           pointer-events: auto;
         }
+
+        ${largeScreenWidthLess(css`
+          display: none;
+        `)}
       `}
     >
       <div

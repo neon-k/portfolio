@@ -6,6 +6,9 @@ import gsap from 'gsap';
 import { offsetTop } from '~/utils/offset';
 
 import { smoothscroll } from '~/utils/smooth-scroll';
+import { largeScreenWidthLess, mediumScreenWidthOver } from '~/utils/media';
+import { getVw } from '~/utils/size';
+import { fontVw } from '~/utils/font';
 
 // ==========================================
 // Type
@@ -29,7 +32,7 @@ const Contents: FC<TProps> = ({ data, isFocus, scroll, onClick }: TProps): React
 
   const [isAnimation, setIsAnimation] = useState<boolean>(false);
 
-  const wrapRef = useRef(null);
+  const wrapRef = useRef<HTMLDivElement>(null);
   const contentsRef = useRef<HTMLDivElement>(null);
   const contentsChildRef = useRef<HTMLDivElement>(null);
 
@@ -117,17 +120,19 @@ const Contents: FC<TProps> = ({ data, isFocus, scroll, onClick }: TProps): React
             display: block;
           }
 
-          &:hover {
-            .hover {
-              opacity: 1;
+          ${mediumScreenWidthOver(css`
+            &:hover {
+              .hover {
+                opacity: 1;
+              }
             }
-          }
 
-          &.focus {
-            .hover {
-              opacity: 1;
+            &.focus {
+              .hover {
+                opacity: 1;
+              }
             }
-          }
+          `)}
         `}
       >
         <div
@@ -161,6 +166,10 @@ const Contents: FC<TProps> = ({ data, isFocus, scroll, onClick }: TProps): React
               width: 100%;
               height: 100%;
               padding: 60px;
+
+              ${largeScreenWidthLess(css`
+                padding: ${getVw(60)};
+              `)}
             `}
           >
             <h3
@@ -171,6 +180,12 @@ const Contents: FC<TProps> = ({ data, isFocus, scroll, onClick }: TProps): React
                 color: #fff;
                 margin-bottom: 10px;
                 font-style: italic;
+
+                ${largeScreenWidthLess(css`
+                  ${fontVw(24)};
+
+                  margin-bottom: ${getVw(10)};
+                `)}
               `}
             >
               YOYOGI CANDLE 2020
@@ -183,6 +198,10 @@ const Contents: FC<TProps> = ({ data, isFocus, scroll, onClick }: TProps): React
                 color: #fbff14;
                 text-transform: uppercase;
                 font-style: italic;
+
+                ${largeScreenWidthLess(css`
+                  ${fontVw(12)};
+                `)}
               `}
             >
               web app
@@ -207,6 +226,10 @@ const Contents: FC<TProps> = ({ data, isFocus, scroll, onClick }: TProps): React
           css={css`
             width: 100%;
             padding-top: 20px;
+
+            ${largeScreenWidthLess(css`
+              padding-top: ${getVw(20)};
+            `)}
           `}
         >
           <div
@@ -216,6 +239,10 @@ const Contents: FC<TProps> = ({ data, isFocus, scroll, onClick }: TProps): React
               &:last-child {
                 margin-bottom: 0;
               }
+
+              ${largeScreenWidthLess(css`
+                margin-bottom: ${getVw(32)};
+              `)}
             `}
           >
             <h3
@@ -226,6 +253,12 @@ const Contents: FC<TProps> = ({ data, isFocus, scroll, onClick }: TProps): React
                 text-transform: uppercase;
                 font-weight: 400;
                 font-style: italic;
+
+                ${largeScreenWidthLess(css`
+                  ${fontVw(18)};
+
+                  margin-bottom: ${getVw(12)};
+                `)}
               `}
             >
               description
@@ -238,6 +271,10 @@ const Contents: FC<TProps> = ({ data, isFocus, scroll, onClick }: TProps): React
                 line-height: 1.4;
                 text-transform: uppercase;
                 font-weight: 200;
+
+                ${largeScreenWidthLess(css`
+                  ${fontVw(12)};
+                `)}
               `}
             >
               東京オリンピックに向けた、プロジェクションマッピングと連動したwebアプリ開発の案件です。
@@ -253,6 +290,10 @@ const Contents: FC<TProps> = ({ data, isFocus, scroll, onClick }: TProps): React
               &:last-child {
                 margin-bottom: 0;
               }
+
+              ${largeScreenWidthLess(css`
+                margin-bottom: ${getVw(32)};
+              `)}
             `}
           >
             <h3
@@ -263,6 +304,12 @@ const Contents: FC<TProps> = ({ data, isFocus, scroll, onClick }: TProps): React
                 text-transform: uppercase;
                 font-weight: 400;
                 font-style: italic;
+
+                ${largeScreenWidthLess(css`
+                  ${fontVw(18)}
+
+                  margin-bottom: ${getVw(12)};
+                `)}
               `}
             >
               skills
@@ -274,6 +321,10 @@ const Contents: FC<TProps> = ({ data, isFocus, scroll, onClick }: TProps): React
                 letter-spacing: 0.1em;
                 font-weight: 400;
                 line-height: 1.4;
+
+                ${largeScreenWidthLess(css`
+                  ${fontVw(12)}
+                `)}
               `}
             >
               React, TypeScript
@@ -287,6 +338,10 @@ const Contents: FC<TProps> = ({ data, isFocus, scroll, onClick }: TProps): React
               &:last-child {
                 margin-bottom: 0;
               }
+
+              ${largeScreenWidthLess(css`
+                margin-bottom: ${getVw(32)};
+              `)}
             `}
           >
             <h3
@@ -297,6 +352,12 @@ const Contents: FC<TProps> = ({ data, isFocus, scroll, onClick }: TProps): React
                 text-transform: uppercase;
                 font-weight: 400;
                 font-style: italic;
+
+                ${largeScreenWidthLess(css`
+                  ${fontVw(18)};
+
+                  margin-bottom: ${getVw(12)};
+                `)}
               `}
             >
               link
@@ -311,6 +372,10 @@ const Contents: FC<TProps> = ({ data, isFocus, scroll, onClick }: TProps): React
                 font-weight: 400;
                 line-height: 1.4;
                 color: #73787b;
+
+                ${largeScreenWidthLess(css`
+                  ${fontVw(12)}
+                `)}
               `}
               href="http://www.htmq.com/style/font-style.shtml"
             >

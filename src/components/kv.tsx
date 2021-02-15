@@ -1,6 +1,10 @@
 import React, { FC, ReactElement, Fragment } from 'react';
 import { css, keyframes } from '@emotion/react';
 
+import { largeScreenWidthLess } from '~/utils/media';
+import { getVw } from '~/utils/size';
+import { fontVw } from '~/utils/font';
+
 // ==========================================
 // Type
 // ==========================================
@@ -66,6 +70,7 @@ const Kv: FC<TProps> = ({ isOpen }: TProps): ReactElement => {
         >
           <div
             css={css`
+              width: 100%;
               position: absolute;
               top: 50%;
               left: 50%;
@@ -91,6 +96,12 @@ const Kv: FC<TProps> = ({ isOpen }: TProps): ReactElement => {
                   transform: translate3d(0, 0, 0);
                   transition: transform 0.6s ease;
                 }
+
+                ${largeScreenWidthLess(css`
+                  ${fontVw(30)};
+
+                  margin-bottom: ${getVw(10)};
+                `)}
               `}
             >
               kota ichikawa
@@ -111,6 +122,10 @@ const Kv: FC<TProps> = ({ isOpen }: TProps): ReactElement => {
                   transform: translate3d(0, 0, 0);
                   transition: transform 0.6s ease;
                 }
+
+                ${largeScreenWidthLess(css`
+                  ${fontVw(18)};
+                `)}
               `}
             >
               web engineer
@@ -142,6 +157,12 @@ const Kv: FC<TProps> = ({ isOpen }: TProps): ReactElement => {
                 font-weight: 200;
                 text-align: center;
                 margin-bottom: 10px;
+
+                ${largeScreenWidthLess(css`
+                  ${fontVw(10)};
+
+                  margin-bottom: ${getVw(10)};
+                `)}
               `}
             >
               Scroll Down
@@ -156,6 +177,10 @@ const Kv: FC<TProps> = ({ isOpen }: TProps): ReactElement => {
                 text-align: center;
                 overflow: hidden;
                 position: relative;
+
+                ${largeScreenWidthLess(css`
+                  height: ${getVw(40)};
+                `)}
               `}
             >
               <span
