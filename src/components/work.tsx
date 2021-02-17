@@ -301,7 +301,6 @@ const Contents: FC<TProps> = ({ data, isFocus, scroll, onClick }: TProps): React
                 font-size: 12px;
                 letter-spacing: 0.1em;
                 line-height: 1.4;
-                text-transform: uppercase;
                 font-weight: 200;
 
                 ${largeScreenWidthLess(css`
