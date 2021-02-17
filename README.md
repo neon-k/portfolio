@@ -1,13 +1,6 @@
 # Portfolio
 
-
 [サイトはこちら](https://w-neon.com)
-
-
-## 残タスク
-- ローディング画面作成
-- API入れ込み
-- データ入れ込み
 
 ## Build Setup
 
@@ -19,11 +12,5 @@ $ yarn install
 $ yarn dev
 
 # 静的ファイル生成
-$ yarn generate
-
-# jsのコードをチェック + 自動修正
-$ yarn script:lint
-
-# cssのコードをチェック + 自動修正 
-$ yarn style:lint
+$ yarn build
 ```

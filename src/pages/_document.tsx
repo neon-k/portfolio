@@ -17,9 +17,9 @@ interface CustomDocumentInterface {
 }
 
 class CustomDocument extends Document implements CustomDocumentInterface {
-  url = 'https://example.com';
-  title = 'Demo Next.js';
-  description = 'Demo of Next.js';
+  url = 'https://w-neon.com/';
+  title = 'portfolio';
+  description = 'kota portfolio';
 
   static async getInitialProps(ctx: DocumentContext): Promise<DocumentInitialProps> {
     const initialProps = await Document.getInitialProps(ctx);
@@ -42,6 +42,7 @@ class CustomDocument extends Document implements CustomDocumentInterface {
     return (
       <Html lang="ja-JP">
         <Head>
+          <title>Portfolio</title>
           <meta name="description" content={this.description} />
           <meta name="theme-color" content="#333" />
           <meta property="og:type" content="website" />
