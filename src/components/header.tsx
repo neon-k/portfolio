@@ -60,10 +60,9 @@ const Header: FC<TProps> = ({ isOpen, onClickAbout, onClickWork }: TProps): Reac
     <header
       className={isOpen ? 'open' : ''}
       css={css`
-        width: 100%;
         position: fixed;
         top: 0;
-        left: 0;
+        right: 0;
         opacity: 0;
         pointer-events: none;
         transition: opacity 0.2s linear;
@@ -82,14 +81,14 @@ const Header: FC<TProps> = ({ isOpen, onClickAbout, onClickWork }: TProps): Reac
       <div
         css={css`
           width: 100%;
-          display: flex;
+          display: inline-flex;
           padding: 80px 60px;
           justify-content: flex-end;
         `}
       >
         <ul
           css={css`
-            display: flex;
+            display: inline-flex;
           `}
         >
           <li css={list} onClick={() => onClickWork()}>

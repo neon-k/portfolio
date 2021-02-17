@@ -50,7 +50,7 @@ const LoadingInner = css`
 `;
 
 const Home: FC = (): ReactElement => {
-  const [focusIndex, setFocusIndex] = useState<boolean>(false);
+  const [focusIndex, setFocusIndex] = useState<number>(-1);
   const [isTitle, setIsTitle] = useState<boolean>(false);
   const [isReady, setIsReady] = useState<boolean>(true);
 
@@ -73,36 +73,6 @@ const Home: FC = (): ReactElement => {
         scroll: top + window.innerHeight
       }
     });
-
-    if (top <= 100) {
-      dispatch({
-        type: types.SET_IS_HEADER,
-        payload: {
-          isHeader: false
-        }
-      });
-
-      dispatch({
-        type: types.SET_IS_KV,
-        payload: {
-          isKv: true
-        }
-      });
-    } else {
-      dispatch({
-        type: types.SET_IS_HEADER,
-        payload: {
-          isHeader: true
-        }
-      });
-
-      dispatch({
-        type: types.SET_IS_KV,
-        payload: {
-          isKv: false
-        }
-      });
-    }
   }, []);
 
   // ファーストビュー
@@ -152,7 +122,7 @@ const Home: FC = (): ReactElement => {
           scaleX: 0,
           delay: 0.4,
           transformOrigin: 'right',
-          duration: 0.4,
+          duration: 0.8,
           ease: 'expo.out'
         });
 
@@ -172,7 +142,45 @@ const Home: FC = (): ReactElement => {
     if (offsetTop(titleRef.current) < scroll && !isTitle) {
       setIsTitle(true);
     }
-  }, [scroll]);
+
+    if (scroll - window.innerHeight <= 100) {
+      if (state.isHeader) {
+        dispatch({
+          type: types.SET_IS_HEADER,
+          payload: {
+            isHeader: false
+          }
+        });
+      }
+
+      if (!state.isKv) {
+        dispatch({
+          type: types.SET_IS_KV,
+          payload: {
+            isKv: true
+          }
+        });
+      }
+    } else {
+      if (!state.isHeader) {
+        dispatch({
+          type: types.SET_IS_HEADER,
+          payload: {
+            isHeader: true
+          }
+        });
+      }
+
+      if (state.isKv) {
+        dispatch({
+          type: types.SET_IS_KV,
+          payload: {
+            isKv: false
+          }
+        });
+      }
+    }
+  }, [state, scroll]);
 
   const onClickWork = () => {
     if (!workRef.current) {
@@ -212,10 +220,10 @@ const Home: FC = (): ReactElement => {
         >
           <Contents
             onClick={() => {
-              setFocusIndex(!focusIndex);
+              setFocusIndex(i !== focusIndex ? i : -1);
             }}
             scroll={scroll}
-            isFocus={focusIndex}
+            isFocus={!!(focusIndex === i)}
             data={r}
           />
         </div>

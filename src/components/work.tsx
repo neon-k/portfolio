@@ -55,7 +55,7 @@ const Contents: FC<TProps> = ({ data, isFocus, scroll, onClick }: TProps): React
         ease: 'sine.out'
       });
 
-      smoothscroll(offsetTop(wrapRef.current), 0.6);
+      smoothscroll(offsetTop(wrapRef.current), 0.3);
     } else {
       gsap.to(contentsRef.current, {
         opacity: 0,
@@ -85,7 +85,7 @@ const Contents: FC<TProps> = ({ data, isFocus, scroll, onClick }: TProps): React
         position: relative;
         transform-origin: left;
         transform: scaleX(0);
-        transition: transform 0.4s 0.4s ease-out;
+        transition: transform 0.4s 0.2s ease-out;
 
         &::before {
           content: '';
@@ -112,7 +112,7 @@ const Contents: FC<TProps> = ({ data, isFocus, scroll, onClick }: TProps): React
           width: 100%;
           position: relative;
           cursor: pointer;
-          transition: opacity 0.4s 0.8s linear;
+          transition: opacity 0.4s 0.6s linear;
           opacity: 0;
 
           &::before {
@@ -372,14 +372,38 @@ const Contents: FC<TProps> = ({ data, isFocus, scroll, onClick }: TProps): React
                   font-weight: 400;
                   line-height: 1.4;
                   color: #73787b;
+                  position: relative;
+                  text-decoration: none;
+
+                  &::before {
+                    content: '';
+                    position: absolute;
+                    width: 100%;
+                    height: 1px;
+                    bottom: -1px;
+                    left: 0;
+                    background-color: #73787b;
+                    transform-origin: right;
+                    transform: scaleX(0);
+                    transition: transform 0.2s linear;
+                  }
+
+                  ${mediumScreenWidthOver(css`
+                    &:hover {
+                      &::before {
+                        transform-origin: left;
+                        transform: scaleX(1);
+                      }
+                    }
+                  `)}
 
                   ${largeScreenWidthLess(css`
                     ${fontVw(12)}
                   `)}
                 `}
-                href="http://www.htmq.com/style/font-style.shtml"
+                href={data.link}
               >
-                http://www.htmq.com/style/font-style.shtml
+                {data.link}
               </a>
             </div>
           ) : null}

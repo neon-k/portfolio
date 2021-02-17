@@ -43,6 +43,11 @@ const Kv: FC<TProps> = ({ isOpen }: TProps): ReactElement => {
         css={css`
           width: 100%;
           height: 100vh;
+          margin-bottom: 180px;
+
+          ${largeScreenWidthLess(css`
+            margin-bottom: ${getVw(40)};
+          `)}
         `}
       />
       <div
