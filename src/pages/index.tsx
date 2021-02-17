@@ -211,7 +211,7 @@ const Home: FC = (): ReactElement => {
           key={i}
           css={css`
             width: 100%;
-            margin-bottom: 120px;
+            margin-bottom: 80px;
 
             &:last-child {
               margin-bottom: 0;

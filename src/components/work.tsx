@@ -125,12 +125,21 @@ const Contents: FC<TProps> = ({ data, isFocus, scroll, onClick }: TProps): React
             &:hover {
               .hover {
                 opacity: 1;
+
+                &::before {
+                  transform: scaleX(1);
+                  transform-origin: left;
+                }
               }
             }
 
             &.focus {
               .hover {
                 opacity: 1;
+
+                &::before {
+                  transform: scaleX(1);
+                }
               }
             }
           `)}
@@ -157,9 +166,31 @@ const Contents: FC<TProps> = ({ data, isFocus, scroll, onClick }: TProps): React
             position: absolute;
             top: 0;
             left: 0;
-            background-color: rgba(0, 0, 0, 0.4);
             opacity: 0;
             transition: opacity 0.2s linear;
+            z-index: 1;
+
+            &::before {
+              content: '';
+              position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              height: 100%;
+              transition: transform 0.3s linear;
+              transform: scaleX(0);
+              transform-origin: right;
+              background-color: rgba(0, 0, 0, 0.4);
+              z-index: -1;
+            }
+
+            ${largeScreenWidthLess(css`
+              opacity: 1;
+
+              &::before {
+                transform: scaleX(1);
+              }
+            `)}
           `}
         >
           <div
@@ -169,7 +200,7 @@ const Contents: FC<TProps> = ({ data, isFocus, scroll, onClick }: TProps): React
               padding: 60px;
 
               ${largeScreenWidthLess(css`
-                padding: ${getVw(60)};
+                padding: ${getVw(25)};
               `)}
             `}
           >
