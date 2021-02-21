@@ -25,7 +25,7 @@ $ brew install yarn
 $ yarn install
 ```
 
-### Statu
+### Start
 
 ```bash
 $ yarn dev
