@@ -19,19 +19,19 @@ $ brew install yarn
 
 ## Building
 
-### 依存モジュールをインストール。
+### Install
 
 ```bash
 $ yarn install
 ```
 
-### 開発開始
+### Statu
 
 ```bash
 $ yarn dev
 ```
 
-### 本番環境生成
+### Production
 
 ```bash
 $ yarn build
