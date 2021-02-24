@@ -2,7 +2,7 @@ import React, { FC, ReactElement, useState, useEffect, useRef } from 'react';
 import { css } from '@emotion/react';
 
 import { offsetTop } from '~/utils/offset';
-import { largeScreenWidthLess } from '~/utils/media';
+import { largeScreenWidthLess, mediumScreenWidthOver } from '~/utils/media';
 import { getVw } from '~/utils/size';
 import { fontVw } from '~/utils/font';
 
@@ -52,6 +52,45 @@ const text = css`
   margin-bottom: 12px;
   font-weight: 400;
   color: #73787b;
+
+  ${largeScreenWidthLess(css`
+    ${fontVw(14)}
+
+    margin-bottom: ${getVw(12)};
+  `)}
+`;
+
+const link = css`
+  font-size: 16px;
+  letter-spacing: 0.2em;
+  margin-bottom: 12px;
+  font-weight: 400;
+  color: #73787b;
+  display: inline-block;
+  text-decoration: none;
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    bottom: -1px;
+    left: 0;
+    background-color: #73787b;
+    transform-origin: right;
+    transform: scaleX(0);
+    transition: transform 0.2s linear;
+  }
+
+  ${mediumScreenWidthOver(css`
+    &:hover {
+      &::before {
+        transform-origin: left;
+        transform: scaleX(1);
+      }
+    }
+  `)}
 
   ${largeScreenWidthLess(css`
     ${fontVw(14)}
@@ -245,8 +284,15 @@ const About: FC<TProps> = ({ scroll }: TProps): ReactElement => {
         </div>
 
         <div css={list}>
-          <p css={title}>skill:</p>
+          <p css={title}>skills:</p>
           <p css={text}>React / Vue / Go / Nest.js / AWS / GCP</p>
+        </div>
+
+        <div css={list}>
+          <p css={title}>git:</p>
+          <a css={link} target="_blank" rel="noreferrer" href="https://github.com/neon-k">
+            https://github.com/neon-k
+          </a>
         </div>
 
         <div css={list}>
